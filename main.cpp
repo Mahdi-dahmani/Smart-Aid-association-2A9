@@ -4,6 +4,7 @@
 #include "connection.h"
 int main(int argc, char *argv[])
 { //hola
+    //hii
     //how are u
     QApplication a(argc, argv);
     Connection c;
