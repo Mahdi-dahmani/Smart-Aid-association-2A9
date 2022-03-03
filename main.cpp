@@ -3,7 +3,7 @@
 #include <QApplication>
 #include "connection.h"
 int main(int argc, char *argv[])
-{
+{ //hola
     QApplication a(argc, argv);
     Connection c;
     bool check = c.createconnect();
