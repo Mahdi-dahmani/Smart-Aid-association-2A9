@@ -24,7 +24,7 @@ bool donateurs::ajouter()
 {
     QSqlQuery query;
     //prepare () prend la requete en parametre pour la preparer  a  execusion
-    query.prepare("insert into donateurs(ID_DONATEUR ,NOM_DONATEUR ,TEL_DONATEUR,ADRESSE_DONATEUR,DON_DONATEUR )" "values (:ID_DONATEUR, ;:NOM_DONATEUR,::TEL_DONATEUR,::ADRESSE_DONATEUR,::DON_DONATEUR");
+    query.prepare("insert into DONATEURS (ID_DONATEUR ,NOM_DONATEUR ,TEL_DONATEUR,ADRESSE_DONATEUR,DON_DONATEUR ) VALUES (:ID_DONATEUR, :NOM_DONATEUR,:TEL_DONATEUR,:ADRESSE_DONATEUR,:DON_DONATEUR)");
     //creation des variables liees
     query.bindValue(":ID_DONATEUR",ID_DONATEUR);
     query.bindValue(":NOM_DONATEUR",NOM_DONATEUR);
@@ -38,7 +38,7 @@ bool donateurs::ajouter()
 QSqlQueryModel * donateurs::afficher()
 {
     QSqlQueryModel * model=new QSqlQueryModel();
-    model->setQuery("select * drom donateurs");
+    model->setQuery("select * from donateurs");
     model ->setHeaderData(0,Qt::Horizontal,QObject::tr("ID_DONATEUR"));
      model ->setHeaderData(1,Qt::Horizontal,QObject::tr("NOM_DONATEUR"));
       model ->setHeaderData(2,Qt::Horizontal,QObject::tr("TEL_DONATEUR"));
@@ -50,7 +50,7 @@ bool donateurs::supprimer(QString ID_DONATEUR)
 {
     QSqlQuery query;
     QString res=QString(ID_DONATEUR);
-    query.prepare("delete from etudiant while id = :ID_DONATEUR");
+    query.prepare("delete from donateurs where id_donateur = :ID_DONATEUR");
     query.bindValue(":ID_DONATEUR",res);
     return query.exec();
 }

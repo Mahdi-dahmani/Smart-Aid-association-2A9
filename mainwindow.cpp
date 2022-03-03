@@ -33,6 +33,7 @@ void MainWindow::on_pushButton_clicked()
                              "click cancel to exit")
                                   , QMessageBox::Cancel
                                   );
+         ui->tableView->setModel(dtmp.afficher());
     }
    else  QMessageBox::critical(nullptr,QObject::tr("not ok"),
                                QObject::tr("ajout non eff \n"
@@ -50,13 +51,14 @@ void MainWindow::on_pushButton_12_clicked()
          QMessageBox::information(nullptr ,QObject::tr("ok"),
                                 QObject::tr("ajout done \n"
                              "click cancel to exit")
-                                  //, QMessageBox::cancel
+                                  , QMessageBox::Cancel
                                   );
+ui->tableView->setModel(dtmp.afficher());
     }
    else  QMessageBox::critical(nullptr,QObject::tr("not ok"),
                                QObject::tr("ajout non eff \n"
                                  "click cancel to exit")
-                               //, QMessageBox::cancel
+                               , QMessageBox::Cancel
                                );
 }
 
