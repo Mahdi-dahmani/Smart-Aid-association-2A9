@@ -54,7 +54,18 @@ bool donateurs::supprimer(QString ID_DONATEUR)
     query.bindValue(":ID_DONATEUR",res);
     return query.exec();
 }
-//bool donateurs::modifier()
-//{
-    //todo
-//}
+bool donateurs::modifier(QString ID_DONATEURR)
+{
+    QSqlQuery query;
+    //prepare () prend la requete en parametre pour la preparer  a  execusion
+    query.prepare("update donateurs set nom_donateur=:nom , tel_donateur=:tel , adresse_donateur=:adresse, don_donateur=:don where id_donateur=:id");
+    //creation des variables liees
+    query.bindValue(":id",ID_DONATEURR);
+    query.bindValue(":nom",NOM_DONATEUR);
+    query.bindValue(":tel",TEL_DONATEUR);
+    query.bindValue(":adresse",ADRESSE_DONATEUR);
+    query.bindValue(":don",DON_DONATEUR);
+    return query.exec();
+
+
+}

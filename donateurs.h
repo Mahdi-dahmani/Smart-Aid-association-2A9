@@ -27,7 +27,7 @@ public:
     bool ajouter();
     QSqlQueryModel * afficher();
     bool supprimer(QString);
-    bool modifier();
+    bool modifier(QString ID_DONATEUR);
 
 };
 
