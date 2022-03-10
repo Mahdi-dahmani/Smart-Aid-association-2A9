@@ -27,7 +27,11 @@ public:
     QSqlQueryModel * afficher();
     bool supprimer(QString userr);
     bool modifier(QString userr);
-
+    QSqlQueryModel * rechercher(QString rech);
+bool recherchertt(QString rech);
+bool check(QString nom);
+bool check_branche(QString branche);
+bool check_mdp(QString nom);
 };
 
 #endif // MEMBRE_H

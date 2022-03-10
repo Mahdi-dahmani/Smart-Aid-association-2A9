@@ -1,7 +1,20 @@
 #include "membre.h"
+#include <iostream>
+#include <QDebug>
 #include <QString>
 #include <QSqlQuery>
 #include <QSqlQueryModel>
+#include "mainwindow.h"
+#include "ui_mainwindow.h"
+#include <iostream>
+#include <stdio.h>
+#include <stdlib.h>
+#include <ctype.h>
+#include "membre.h"
+#include <string.h>
+#include <string>
+#include <QMessageBox>
+using namespace std;
 Membre::Membre()
 {
 
@@ -65,8 +78,11 @@ QSqlQueryModel * Membre::afficher(){
     mod->setHeaderData(1,Qt::Horizontal,QObject::tr("Nom"));
     mod->setHeaderData(2,Qt::Horizontal,QObject::tr("Prenom"));
     mod->setHeaderData(3,Qt::Horizontal,QObject::tr("User"));
-    mod->setHeaderData(4,Qt::Horizontal,QObject::tr("Branche"));
-    mod->setHeaderData(5,Qt::Horizontal,QObject::tr("NB_point"));
+    mod->setHeaderData(4,Qt::Horizontal,QObject::tr("Email"));
+    mod->setHeaderData(5,Qt::Horizontal,QObject::tr("MDP"));
+     mod->setHeaderData(6,Qt::Horizontal,QObject::tr("NB_POINT"));
+    mod->setHeaderData(7,Qt::Horizontal,QObject::tr("Branche"));
+
     return mod ;
 }
 bool Membre::modifier(QString userr){
@@ -84,5 +100,125 @@ q.bindValue(":mdp",mdp);
 
 q.bindValue(":branche",branche);
 return q.exec();
+
+}
+QSqlQueryModel * Membre::rechercher(QString rech){
+
+
+    QSqlQuery q;
+    QSqlQueryModel  * mod=new QSqlQueryModel();
+q.prepare("SELECT * FROM Membres where id_membre = :nom or nom_membre = :nom or prenom_MEMBRE = :nom or email_MEMBRE = :nom or username_MEMBRE = :nom or branche_MEMBRE = :nom or nbpoints_membre = :nom");
+q.bindValue(":nom",rech);
+q.exec();
+mod->setQuery(q);
+
+
+    mod->setHeaderData(0,Qt::Horizontal,QObject::tr("ID"));
+    mod->setHeaderData(1,Qt::Horizontal,QObject::tr("Nom"));
+    mod->setHeaderData(2,Qt::Horizontal,QObject::tr("Prenom"));
+    mod->setHeaderData(3,Qt::Horizontal,QObject::tr("User"));
+    mod->setHeaderData(4,Qt::Horizontal,QObject::tr("Branche"));
+    mod->setHeaderData(5,Qt::Horizontal,QObject::tr("NB_point"));
+    return mod ;
+
+
+
+
+
+}
+bool Membre::recherchertt(QString rech){
+
+
+
+    QSqlQuery q;
+
+
+    q.prepare("SELECT * FROM Membres where id_membre=:nom");
+
+    q.bindValue(":nom",rech);
+
+
+    return q.exec();
+
+
+
+
+
+}
+bool Membre::check(QString nom){
+
+    string test=nom.toStdString();
+    int check=0,i=0,len=test.length();
+    while ((check==0)&&(i<len))
+    {if (isdigit(test[i])||(islower(test[0])))
+    {
+        check=1;
+    }
+    i++;}
+    if (check==1)
+    {
+          return false ;
+
+    }
+    else
+    {
+        return true;
+    }
+
+
+
+
+
+}
+bool Membre::check_branche(QString nom){
+
+    string test=nom.toStdString();
+    int check=0,i=0,len=test.length();
+    while ((check==0)&&(i<len))
+    {if (isdigit(test[i]))
+    {
+        check=1;
+    }
+    i++;}
+    if (check==1)
+    {
+          return false ;
+
+    }
+    else
+    {
+        return true;
+    }
+
+
+
+
+
+
+}
+bool Membre::check_mdp(QString nom){
+
+    string test=nom.toStdString();
+    int check=0,i=0,len=test.length();
+    while ((check==0)&&(i<len))
+    {if (len<8)
+    {
+        check=1;
+    }
+    i++;}
+    if (check==1)
+    {
+          return false ;
+
+    }
+    else
+    {
+        return true;
+    }
+
+
+
+
+
 
 }
