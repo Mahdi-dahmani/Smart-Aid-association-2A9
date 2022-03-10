@@ -31,7 +31,7 @@ void MainWindow::on_pushButton_clicked()
     if ((d.check(NOM_DONATEUR))&&(d.check_tlf(TEL_DONATEUR)))
     test=d.ajouter();
     else {QMessageBox::information(nullptr ,QObject::tr("ok"),
-                                   QObject::tr("NOM ou Telephone FORMART INCORRECT\n"
+                                   QObject::tr("NOM  Telephone FORMART INCORRECT\n"
                                 "click cancel to exit")
                                      , QMessageBox::Cancel
                                      );

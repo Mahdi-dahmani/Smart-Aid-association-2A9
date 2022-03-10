@@ -27,6 +27,10 @@ private slots:
 
     void on_pushButton_3_clicked();
 
+    void on_trie_clicked();
+
+    void on_lineEdit_editingFinished();
+
 private:
     Ui::MainWindow *ui;
     donateurs dtmp;

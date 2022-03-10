@@ -10,6 +10,7 @@ public:
     //constructeurs
     donateurs();
     donateurs(QString,QString,QString,QString,QString);
+    donateurs(QString,QString,QString,QString);
     //getters
     QString getid_donateur(){return ID_DONATEUR;}
     QString getnom_donateur(){return NOM_DONATEUR;}
@@ -28,7 +29,9 @@ public:
     QSqlQueryModel * afficher();
     bool supprimer(QString);
     bool modifier(QString ID_DONATEUR);
-
+   QSqlQueryModel * rechercher(QString rech);
+   bool check (QString nom);
+   bool check_tlf(QString nom);
 };
 
 

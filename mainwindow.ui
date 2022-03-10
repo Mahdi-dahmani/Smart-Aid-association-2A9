@@ -183,7 +183,7 @@
       <property name="title">
        <string>modifier_donateur</string>
       </property>
-      <widget class="QLineEdit" name="lineEdit_11">
+      <widget class="QLineEdit" name="lineEdit_nom">
        <property name="geometry">
         <rect>
          <x>140</x>
@@ -193,7 +193,7 @@
         </rect>
        </property>
       </widget>
-      <widget class="QLineEdit" name="lineEdit_12">
+      <widget class="QLineEdit" name="lineEdit_tlp">
        <property name="geometry">
         <rect>
          <x>140</x>
@@ -226,7 +226,7 @@
         </rect>
        </property>
        <property name="text">
-        <string>don</string>
+        <string>Telepone</string>
        </property>
       </widget>
       <widget class="QLabel" name="label_19">
@@ -242,7 +242,7 @@
         <string>Adresse</string>
        </property>
       </widget>
-      <widget class="QLineEdit" name="lineEdit_14">
+      <widget class="QLineEdit" name="lineEdit_add">
        <property name="geometry">
         <rect>
          <x>140</x>
@@ -265,7 +265,7 @@
         <string>Modifier</string>
        </property>
       </widget>
-      <widget class="QLineEdit" name="lineEdit_15">
+      <widget class="QLineEdit" name="lineEdit_typedon">
        <property name="geometry">
         <rect>
          <x>140</x>
@@ -285,7 +285,7 @@
         </rect>
        </property>
        <property name="text">
-        <string>Téléphone</string>
+        <string>type de don</string>
        </property>
       </widget>
       <widget class="QLabel" name="label_25">
@@ -380,12 +380,12 @@
         <string>Type de don </string>
        </property>
       </widget>
-      <widget class="QLineEdit" name="lineEdit_24">
+      <widget class="QLineEdit" name="lineEdit_rech">
        <property name="geometry">
         <rect>
          <x>140</x>
          <y>30</y>
-         <width>61</width>
+         <width>81</width>
          <height>20</height>
         </rect>
        </property>
@@ -400,7 +400,7 @@
         </rect>
        </property>
        <property name="text">
-        <string>Enter Id donateur </string>
+        <string>Recherche donateur </string>
        </property>
       </widget>
       <widget class="QPushButton" name="pushButton_13">
@@ -413,7 +413,7 @@
         </rect>
        </property>
        <property name="text">
-        <string>entrer</string>
+        <string>recherche</string>
        </property>
       </widget>
       <widget class="QTableView" name="tableView">
@@ -424,6 +424,19 @@
          <width>291</width>
          <height>391</height>
         </rect>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="trie">
+       <property name="geometry">
+        <rect>
+         <x>140</x>
+         <y>0</y>
+         <width>75</width>
+         <height>23</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>trie</string>
        </property>
       </widget>
      </widget>
