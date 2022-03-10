@@ -2,6 +2,7 @@
 #include <QString>
 #include <QSqlQuery>
 
+
 NECESSITEUX::NECESSITEUX()
 {
 
@@ -69,6 +70,7 @@ bool NECESSITEUX::supprimer(QString IDD)
 
 QSqlQueryModel * NECESSITEUX::afficher()
 {
+    QSqlQuery b;
     QSqlQueryModel * model=new QSqlQueryModel();
     model->setQuery("select * from NECESSITEUX");
     model->setHeaderData(0,Qt::Horizontal,QObject::tr("ID_NECESSITEUX"));
@@ -77,10 +79,13 @@ QSqlQueryModel * NECESSITEUX::afficher()
     model->setHeaderData(3,Qt::Horizontal,QObject::tr("AGE"));
     model->setHeaderData(4,Qt::Horizontal,QObject::tr("TEL"));
     model->setHeaderData(5,Qt::Horizontal,QObject::tr("ADRESSE"));
-    model->setHeaderData(6,Qt::Horizontal,QObject::tr("BESOIN"));
-    model->setHeaderData(7,Qt::Horizontal,QObject::tr("MBR_FAMILLE"));
+    model->setHeaderData(6,Qt::Horizontal,QObject::tr("MBR_FAMILLE"));
+    model->setHeaderData(7,Qt::Horizontal,QObject::tr("BESOIN"));
     model->setHeaderData(8,Qt::Horizontal,QObject::tr("DATE_NECESSITEUX"));
+
+
     return model;
+
 
 }
 
@@ -103,6 +108,70 @@ bool NECESSITEUX::modifier(QString id){
     }
 
 
+QSqlQueryModel * NECESSITEUX::rechercher(QString rech)
+{
+    QSqlQuery b ;
+    QSqlQueryModel * model=new QSqlQueryModel();
+    b.prepare("SELECT * FROM NECESSITEUX where ID_NECESSITEUX = :nom or TEL = :nom");
+    b.bindValue(":nom" ,rech);
+    b.exec();
+    model->setQuery(b);
+
+
+
+    model->setHeaderData(0,Qt::Horizontal,QObject::tr("ID_NECESSITEUX"));
+    model->setHeaderData(1,Qt::Horizontal,QObject::tr("NOM_NECESSITEUX"));
+    model->setHeaderData(2,Qt::Horizontal,QObject::tr("SEXE"));
+    model->setHeaderData(3,Qt::Horizontal,QObject::tr("AGE"));
+    model->setHeaderData(4,Qt::Horizontal,QObject::tr("TEL"));
+    model->setHeaderData(5,Qt::Horizontal,QObject::tr("ADRESSE"));
+    model->setHeaderData(6,Qt::Horizontal,QObject::tr("BESOIN"));
+    model->setHeaderData(7,Qt::Horizontal,QObject::tr("MBR_FAMILLE"));
+    model->setHeaderData(8,Qt::Horizontal,QObject::tr("DATE_NECESSITEUX"));
+
+
+    return model;
+
+
+
+
+
+
+}
+
+
+
+
+QSqlQueryModel * NECESSITEUX::trier()
+{
+    QSqlQuery b ;
+    QSqlQueryModel * model=new QSqlQueryModel();
+    b.prepare("SELECT * FROM NECESSITEUX ORDER BY MBR_FAMILLE ASC ;");
+
+    b.exec();
+    model->setQuery(b);
+
+
+
+    model->setHeaderData(0,Qt::Horizontal,QObject::tr("ID_NECESSITEUX"));
+    model->setHeaderData(1,Qt::Horizontal,QObject::tr("NOM_NECESSITEUX"));
+    model->setHeaderData(2,Qt::Horizontal,QObject::tr("SEXE"));
+    model->setHeaderData(3,Qt::Horizontal,QObject::tr("AGE"));
+    model->setHeaderData(4,Qt::Horizontal,QObject::tr("TEL"));
+    model->setHeaderData(5,Qt::Horizontal,QObject::tr("ADRESSE"));
+    model->setHeaderData(6,Qt::Horizontal,QObject::tr("BESOIN"));
+    model->setHeaderData(7,Qt::Horizontal,QObject::tr("MBR_FAMILLE"));
+    model->setHeaderData(8,Qt::Horizontal,QObject::tr("DATE_NECESSITEUX"));
+
+
+    return model;
+
+
+
+
+
+
+}
 
 
 

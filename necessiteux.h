@@ -12,10 +12,14 @@ public:
     NECESSITEUX();
     NECESSITEUX(QString,QString,QString,QString,QString,QString,QString,QString);
     NECESSITEUX(QString,QString,QString,QString,QString,QString,QString,QString,QString);
+
     bool ajouter();
     QSqlQueryModel* afficher();
     bool modifier(QString ID_NECESSITEUX);
     bool supprimer(QString ID_NECESSITEUX);
+    QSqlQueryModel* rechercher(QString rech);
+    QSqlQueryModel* trier();
+
 };
 
 #endif // NECESSITEUX_H
