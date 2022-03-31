@@ -23,9 +23,9 @@
    <widget class="QGroupBox" name="groupBox_ajout">
     <property name="geometry">
      <rect>
-      <x>20</x>
+      <x>10</x>
       <y>10</y>
-      <width>291</width>
+      <width>441</width>
       <height>351</height>
      </rect>
     </property>
@@ -356,8 +356,8 @@
     <widget class="QPushButton" name="pushButton_4">
      <property name="geometry">
       <rect>
-       <x>190</x>
-       <y>320</y>
+       <x>330</x>
+       <y>310</y>
        <width>93</width>
        <height>28</height>
       </rect>
@@ -494,7 +494,7 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>340</y>
+      <y>370</y>
       <width>721</width>
       <height>291</height>
      </rect>
@@ -883,6 +883,19 @@
       </rect>
      </property>
     </widget>
+   </widget>
+   <widget class="QPushButton" name="excel">
+    <property name="geometry">
+     <rect>
+      <x>600</x>
+      <y>60</y>
+      <width>93</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Exporter</string>
+    </property>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">

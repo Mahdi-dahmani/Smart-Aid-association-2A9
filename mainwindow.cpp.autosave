@@ -137,7 +137,7 @@ void MainWindow::on_pushButton_2_clicked()
                QMessageBox::information(nullptr,QObject::tr("OK"),
                                         QObject::tr("Edit done"),QMessageBox::Cancel );
             }
-            else
+            else+
             {
                 QMessageBox::critical(nullptr , QObject::tr("OK"),
                                       QObject::tr("Edit impossible") , QMessageBox::Cancel );

@@ -29,6 +29,8 @@ private slots:
 
     void on_pushButton_clicked();
 
+    void on_excel_clicked();
+
 private:
     Ui::MainWindow *ui;
     NECESSITEUX nes;

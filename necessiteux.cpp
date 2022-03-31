@@ -79,8 +79,8 @@ QSqlQueryModel * NECESSITEUX::afficher()
     model->setHeaderData(3,Qt::Horizontal,QObject::tr("AGE"));
     model->setHeaderData(4,Qt::Horizontal,QObject::tr("TEL"));
     model->setHeaderData(5,Qt::Horizontal,QObject::tr("ADRESSE"));
-    model->setHeaderData(6,Qt::Horizontal,QObject::tr("MBR_FAMILLE"));
-    model->setHeaderData(7,Qt::Horizontal,QObject::tr("BESOIN"));
+    model->setHeaderData(6,Qt::Horizontal,QObject::tr("BESOIN"));
+    model->setHeaderData(7,Qt::Horizontal,QObject::tr("MBR_FAMILLE"));
     model->setHeaderData(8,Qt::Horizontal,QObject::tr("DATE_NECESSITEUX"));
 
 
