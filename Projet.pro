@@ -1,4 +1,4 @@
-QT       += core gui sql
+QT       += core gui sql charts axcontainer
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -17,16 +17,24 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     connection.cpp \
+    excelexporthelper.cpp \
+    form.cpp \
+    form2.cpp \
     main.cpp \
     mainwindow.cpp \
     membre.cpp
 
 HEADERS += \
     connection.h \
+    excelexporthelper.h \
+    form.h \
+    form2.h \
     mainwindow.h \
     membre.h
 
 FORMS += \
+    form.ui \
+    form2.ui \
     mainwindow.ui
 
 # Default rules for deployment.

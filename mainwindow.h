@@ -14,6 +14,7 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+
 void on_pushButton_ajouter_clicked();
 private slots:
 void on_pushButton_clicked();
@@ -35,6 +36,22 @@ void on_lineEdit_branche_editingFinished();
 void on_lineEdit_mdp_editingFinished();
 
 void on_lineEdit_user_editingFinished();
+
+void on_p_nom_clicked();
+
+void on_p_id_clicked();
+void on_pushButton_7_clicked();
+
+
+void on_p_prenom_clicked();
+
+void on_p_user_clicked();
+
+void on_excel_clicked();
+
+void on_pushButton_7_clicked(bool checked);
+
+void on_mdm_clicked();
 
 private:
     Ui::MainWindow *ui;

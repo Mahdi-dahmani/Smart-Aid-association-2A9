@@ -11,14 +11,30 @@
 #include <QString>
 #include <QSqlQuery>
 #include <QSqlQueryModel>
+#include "form.h"
+#include "ui_form.h"
+#include <ActiveQt/qaxobject.h>
+#include <ActiveQt/qaxbase.h>
+#include <QMessageBox>
+#include <qstring.h>
+#include "excelexporthelper.h"
+#include <QFile>
+#include <stdexcept>
+#include "form2.h"
 using namespace std;
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
 
+
     ui->setupUi(this);
     ui->tableView->setModel(mem.afficher());
+    ui->p_nom->setStyleSheet("background-color: rgba(255, 255, 255, 0);");
+    ui->p_id->setStyleSheet("background-color: rgba(255, 255, 255, 0);");
+    ui->p_prenom->setStyleSheet("background-color: rgba(255, 255, 255, 0);");
+    ui->p_user->setStyleSheet("background-color: rgba(255, 255, 255, 0);");
 }
 
 MainWindow::~MainWindow()
@@ -255,4 +271,129 @@ void MainWindow::on_lineEdit_user_selectionChanged(){
 
 
 
+}
+
+void MainWindow::on_p_nom_clicked()
+{
+    QSqlQueryModel  * mod=new QSqlQueryModel();
+    mod->setQuery("SELECT * FROM Membres Order by nom_membre ASC ");
+    mod->setHeaderData(0,Qt::Horizontal,QObject::tr("ID"));
+    mod->setHeaderData(1,Qt::Horizontal,QObject::tr("Nom"));
+    mod->setHeaderData(2,Qt::Horizontal,QObject::tr("Prenom"));
+    mod->setHeaderData(3,Qt::Horizontal,QObject::tr("User"));
+    mod->setHeaderData(4,Qt::Horizontal,QObject::tr("Email"));
+    mod->setHeaderData(5,Qt::Horizontal,QObject::tr("MDP"));
+     mod->setHeaderData(6,Qt::Horizontal,QObject::tr("NB_POINT"));
+    mod->setHeaderData(7,Qt::Horizontal,QObject::tr("Branche"));
+
+   ui->tableView->setModel(mod);
+
+}
+
+void MainWindow::on_p_id_clicked()
+{
+    QSqlQueryModel  * mod=new QSqlQueryModel();
+    mod->setQuery("SELECT * FROM Membres Order by id_membre ASC ");
+    mod->setHeaderData(0,Qt::Horizontal,QObject::tr("ID"));
+    mod->setHeaderData(1,Qt::Horizontal,QObject::tr("Nom"));
+    mod->setHeaderData(2,Qt::Horizontal,QObject::tr("Prenom"));
+    mod->setHeaderData(3,Qt::Horizontal,QObject::tr("User"));
+    mod->setHeaderData(4,Qt::Horizontal,QObject::tr("Email"));
+    mod->setHeaderData(5,Qt::Horizontal,QObject::tr("MDP"));
+     mod->setHeaderData(6,Qt::Horizontal,QObject::tr("NB_POINT"));
+    mod->setHeaderData(7,Qt::Horizontal,QObject::tr("Branche"));
+
+   ui->tableView->setModel(mod);
+}
+
+void MainWindow::on_pushButton_7_clicked()
+{
+Form *f =new Form();
+f->show();
+
+}
+
+void MainWindow::on_p_prenom_clicked()
+{
+    QSqlQueryModel  * mod=new QSqlQueryModel();
+    mod->setQuery("SELECT * FROM Membres Order by prenom_membre ASC ");
+    mod->setHeaderData(0,Qt::Horizontal,QObject::tr("ID"));
+    mod->setHeaderData(1,Qt::Horizontal,QObject::tr("Nom"));
+    mod->setHeaderData(2,Qt::Horizontal,QObject::tr("Prenom"));
+    mod->setHeaderData(3,Qt::Horizontal,QObject::tr("User"));
+    mod->setHeaderData(4,Qt::Horizontal,QObject::tr("Email"));
+    mod->setHeaderData(5,Qt::Horizontal,QObject::tr("MDP"));
+    mod->setHeaderData(6,Qt::Horizontal,QObject::tr("NB_POINT"));
+    mod->setHeaderData(7,Qt::Horizontal,QObject::tr("Branche"));
+
+   ui->tableView->setModel(mod);
+}
+
+void MainWindow::on_p_user_clicked()
+{
+    QSqlQueryModel  * mod=new QSqlQueryModel();
+    mod->setQuery("SELECT * FROM Membres Order by username_membre ASC ");
+    mod->setHeaderData(0,Qt::Horizontal,QObject::tr("ID"));
+    mod->setHeaderData(1,Qt::Horizontal,QObject::tr("Nom"));
+    mod->setHeaderData(2,Qt::Horizontal,QObject::tr("Prenom"));
+    mod->setHeaderData(3,Qt::Horizontal,QObject::tr("User"));
+    mod->setHeaderData(4,Qt::Horizontal,QObject::tr("Email"));
+    mod->setHeaderData(5,Qt::Horizontal,QObject::tr("MDP"));
+     mod->setHeaderData(6,Qt::Horizontal,QObject::tr("NB_POINT"));
+    mod->setHeaderData(7,Qt::Horizontal,QObject::tr("Branche"));
+
+   ui->tableView->setModel(mod);
+
+}
+
+void MainWindow::on_excel_clicked()
+{
+    try
+        {
+            const QString fileName = "c:\\test.xlsx";
+
+            ExcelExportHelper helper;
+int l=2;
+            QSqlQuery q;
+            if(q.exec("SELECT * FROM membres"))
+            {
+helper.SetCellValue(1,1,"ID");
+helper.SetCellValue(1,2,"NOM");
+helper.SetCellValue(1,3,"PRENOM");
+helper.SetCellValue(1,4,"USERNAME");
+helper.SetCellValue(1,5,"EMAIL");
+helper.SetCellValue(1,6,"MDP");
+helper.SetCellValue(1,7,"NBPOINTS");
+helper.SetCellValue(1,8,"BRANCHE");
+                while (q.next())
+                {
+
+            helper.SetCellValue(l,1,q.value(0).toString());
+            helper.SetCellValue(l,2,q.value(1).toString());
+            helper.SetCellValue(l,3,q.value(2).toString());
+            helper.SetCellValue(l,4,q.value(3).toString());
+            helper.SetCellValue(l,5,q.value(4).toString());
+            helper.SetCellValue(l,6,q.value(5).toString());
+            helper.SetCellValue(l,7,q.value(6).toString());
+            helper.SetCellValue(l,8,q.value(7).toString());
+l++;
+
+                }
+            helper.SaveAs(fileName);
+        }}
+        catch (const exception& e)
+        {
+            QMessageBox::critical(this, "Error - Demo", e.what());
+        }
+}
+
+void MainWindow::on_pushButton_7_clicked(bool checked)
+{
+
+}
+
+void MainWindow::on_mdm_clicked()
+{
+    Form2 *f =new Form2();
+    f->show();
 }

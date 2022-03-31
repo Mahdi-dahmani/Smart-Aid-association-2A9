@@ -1,16 +1,36 @@
+#include <QtCharts/QPieSlice>
+#include <QtCharts/QChartView>
+#include <QtWidgets/QMainWindow>
+#include <QtCharts/QBarSeries>
+#include <QtCharts/QBarSet>
+#include <QtCharts/QLegend>
+#include <QtCharts/QBarCategoryAxis>
+#include <QtCharts/QHorizontalStackedBarSeries>
+#include <QtCharts/QLineSeries>
+#include <QtCharts/QCategoryAxis>
+#include <QtCharts/QPieSeries>
 #include "mainwindow.h"
+
+
 #include <QMessageBox>
 #include <QApplication>
 #include "connection.h"
+#include "form.h"
+#include "ui_form.h"
+QT_CHARTS_USE_NAMESPACE
 int main(int argc, char *argv[])
 { //hola
     //hii
     //how are u
+
     QApplication a(argc, argv);
+
     Connection c;
     bool check = c.createconnect();
-    MainWindow w;
+MainWindow w;
     w.show();
+
+
 
     if (check)
     {

@@ -200,7 +200,7 @@
       </rect>
      </property>
      <property name="text">
-      <string>Username</string>
+      <string>ID membre</string>
      </property>
     </widget>
     <widget class="QLineEdit" name="lineEdit_supp_user">
@@ -465,6 +465,97 @@
       <string>Rechercher</string>
      </property>
     </widget>
+    <widget class="QPushButton" name="p_nom">
+     <property name="geometry">
+      <rect>
+       <x>160</x>
+       <y>90</y>
+       <width>101</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="p_id">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>90</y>
+       <width>131</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="p_prenom">
+     <property name="geometry">
+      <rect>
+       <x>260</x>
+       <y>90</y>
+       <width>131</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="p_user">
+     <property name="geometry">
+      <rect>
+       <x>390</x>
+       <y>90</y>
+       <width>141</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QPushButton" name="excel">
+    <property name="geometry">
+     <rect>
+      <x>70</x>
+      <y>577</y>
+      <width>191</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Exporter en fichier Excel</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_7">
+    <property name="geometry">
+     <rect>
+      <x>70</x>
+      <y>527</y>
+      <width>191</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Statistiques</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="mdm">
+    <property name="geometry">
+     <rect>
+      <x>300</x>
+      <y>530</y>
+      <width>191</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Afficher membre de mois</string>
+    </property>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">

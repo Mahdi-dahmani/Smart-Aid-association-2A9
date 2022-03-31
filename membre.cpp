@@ -64,7 +64,7 @@ bool Membre::supprimer(QString userr){
     QSqlQuery q;
 
 
-    q.prepare("DELETE FROM membres where username_MEMBRE=:user");
+    q.prepare("DELETE FROM membres where ID_MEMBRE=:user");
     q.bindValue(":user",userr);
     return q.exec();
 
