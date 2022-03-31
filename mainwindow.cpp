@@ -5,6 +5,11 @@
 #include <QTableView>
 #include <string>
 #include <string.h>
+#include <ActiveQt/qaxobject.h>
+#include <ActiveQt/qaxbase.h>
+#include <QFile>
+#include <stdexcept>
+#include "excelexporthelper.h"
 using namespace std;
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -31,7 +36,7 @@ void MainWindow::on_pushButton_clicked()
     if ((d.check(NOM_DONATEUR))&&(d.check_tlf(TEL_DONATEUR)))
     test=d.ajouter();
     else {QMessageBox::information(nullptr ,QObject::tr("ok"),
-                                   QObject::tr("NOM ou Telephone FORMART INCORRECT\n"
+                                   QObject::tr("NOM  Telephone FORMART INCORRECT\n"
                                 "click cancel to exit")
                                      , QMessageBox::Cancel
                                      );
@@ -114,11 +119,57 @@ ui->tableView->setModel(dtmp.afficher());
 void MainWindow::on_trie_clicked()
 {
     QSqlQueryModel * model=new QSqlQueryModel();
-    model->setQuery("SELECT * FROM donateurs  ORDER BY ID_DONATEUR ASC ;");
+    model->setQuery("SELECT* FROM donateurs  ORDER BY id  ;");
+    model->setHeaderData(0,Qt::Horizontal,QObject::tr("ID"));
+    model->setHeaderData(1,Qt::Horizontal,QObject::tr("NOM_donateur"));
+    model->setHeaderData(2,Qt::Horizontal,QObject::tr("Tel_donateur"));
+    model->setHeaderData(3,Qt::Horizontal,QObject::tr("Adresse_donateur"));
+    model->setHeaderData(4,Qt::Horizontal,QObject::tr("Don_donateur"));
              ui->tableView->setModel(model);
 }
 
 void MainWindow::on_lineEdit_editingFinished()
 {
 
+}
+
+void MainWindow::on_excel_clicked()
+{
+    try
+           {
+               const QString fileName = "c:\\test.xlsx";
+
+               ExcelExportHelper helper;
+   int l=2;
+               QSqlQuery q;
+               if(q.exec("SELECT * FROM membres"))
+               {
+   helper.SetCellValue(1,1,"ID");
+   helper.SetCellValue(1,2,"NOM");
+   helper.SetCellValue(1,3,"PRENOM");
+   helper.SetCellValue(1,4,"USERNAME");
+   helper.SetCellValue(1,5,"EMAIL");
+   helper.SetCellValue(1,6,"MDP");
+   helper.SetCellValue(1,7,"NBPOINTS");
+   helper.SetCellValue(1,8,"BRANCHE");
+                   while (q.next())
+                   {
+
+               helper.SetCellValue(l,1,q.value(0).toString());
+               helper.SetCellValue(l,2,q.value(1).toString());
+               helper.SetCellValue(l,3,q.value(2).toString());
+               helper.SetCellValue(l,4,q.value(3).toString());
+               helper.SetCellValue(l,5,q.value(4).toString());
+               helper.SetCellValue(l,6,q.value(5).toString());
+               helper.SetCellValue(l,7,q.value(6).toString());
+               helper.SetCellValue(l,8,q.value(7).toString());
+   l++;
+
+                   }
+               helper.SaveAs(fileName);
+           }}
+           catch (const exception& e)
+           {
+               QMessageBox::critical(this, "Error - Demo", e.what());
+           }
 }

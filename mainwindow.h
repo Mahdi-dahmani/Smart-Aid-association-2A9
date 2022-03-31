@@ -31,6 +31,8 @@ private slots:
 
     void on_lineEdit_editingFinished();
 
+    void on_excel_clicked();
+
 private:
     Ui::MainWindow *ui;
     donateurs dtmp;

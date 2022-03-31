@@ -51,6 +51,9 @@
          <height>20</height>
         </rect>
        </property>
+       <property name="text">
+        <string/>
+       </property>
       </widget>
       <widget class="QLineEdit" name="lineEdit_2">
        <property name="geometry">
@@ -60,6 +63,9 @@
          <width>113</width>
          <height>20</height>
         </rect>
+       </property>
+       <property name="text">
+        <string/>
        </property>
       </widget>
       <widget class="QLineEdit" name="lineEdit_3">
@@ -146,6 +152,9 @@
          <height>20</height>
         </rect>
        </property>
+       <property name="text">
+        <string/>
+       </property>
       </widget>
       <widget class="QLabel" name="label_26">
        <property name="geometry">
@@ -168,6 +177,19 @@
          <width>113</width>
          <height>20</height>
         </rect>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="excel">
+       <property name="geometry">
+        <rect>
+         <x>80</x>
+         <y>260</y>
+         <width>75</width>
+         <height>23</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Exporter</string>
        </property>
       </widget>
      </widget>

@@ -1,4 +1,4 @@
-QT       += core gui sql
+QT       += core gui sql axcontainer
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -18,12 +18,14 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     connection.cpp \
     donateurs.cpp \
+    excelexporthelper.cpp \
     main.cpp \
     mainwindow.cpp
 
 HEADERS += \
     connection.h \
     donateurs.h \
+    excelexporthelper.h \
     mainwindow.h
 
 FORMS += \
