@@ -3,7 +3,7 @@
 #include <QMainWindow>
 #include "donateurs.h"
 #include <QTableView>
-
+#include "dons.h"
 
 
 QT_BEGIN_NAMESPACE
@@ -33,8 +33,17 @@ private slots:
 
     void on_excel_clicked();
 
+    void on_pushButton_7_clicked();
+
+    void on_boutonajoutdon_clicked();
+
+    void on_supprimerdon_clicked();
+
+    void on_pushButton_4_clicked();
+
 private:
     Ui::MainWindow *ui;
     donateurs dtmp;
+    Dons dotmp;
 };
 #endif // MAINWINDOW_H

@@ -10,13 +10,17 @@
 #include <QFile>
 #include <stdexcept>
 #include "excelexporthelper.h"
+#include "form.h"
+#include "dons.h"
 using namespace std;
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
     ui->tableView->setModel(dtmp.afficher());
+     ui->tableView_2->setModel(dotmp.afficherd());
 }
 
 MainWindow::~MainWindow()
@@ -36,7 +40,7 @@ void MainWindow::on_pushButton_clicked()
     if ((d.check(NOM_DONATEUR))&&(d.check_tlf(TEL_DONATEUR)))
     test=d.ajouter();
     else {QMessageBox::information(nullptr ,QObject::tr("ok"),
-                                   QObject::tr("NOM  Telephone FORMART INCORRECT\n"
+                                   QObject::tr("NOM   ou Telephone FORMART INCORRECT\n"
                                 "click cancel to exit")
                                      , QMessageBox::Cancel
                                      );
@@ -119,8 +123,8 @@ ui->tableView->setModel(dtmp.afficher());
 void MainWindow::on_trie_clicked()
 {
     QSqlQueryModel * model=new QSqlQueryModel();
-    model->setQuery("SELECT* FROM donateurs  ORDER BY id  ;");
-    model->setHeaderData(0,Qt::Horizontal,QObject::tr("ID"));
+    model->setQuery("SELECT* FROM donateurs  ORDER BY to_number(id_donateur) ASC ;");
+    model->setHeaderData(0,Qt::Horizontal,QObject::tr("ID_DONATEUR"));
     model->setHeaderData(1,Qt::Horizontal,QObject::tr("NOM_donateur"));
     model->setHeaderData(2,Qt::Horizontal,QObject::tr("Tel_donateur"));
     model->setHeaderData(3,Qt::Horizontal,QObject::tr("Adresse_donateur"));
@@ -142,16 +146,14 @@ void MainWindow::on_excel_clicked()
                ExcelExportHelper helper;
    int l=2;
                QSqlQuery q;
-               if(q.exec("SELECT * FROM membres"))
+               if(q.exec("SELECT * FROM donateurs"))
                {
-   helper.SetCellValue(1,1,"ID");
-   helper.SetCellValue(1,2,"NOM");
-   helper.SetCellValue(1,3,"PRENOM");
-   helper.SetCellValue(1,4,"USERNAME");
-   helper.SetCellValue(1,5,"EMAIL");
-   helper.SetCellValue(1,6,"MDP");
-   helper.SetCellValue(1,7,"NBPOINTS");
-   helper.SetCellValue(1,8,"BRANCHE");
+   helper.SetCellValue(1,1,"id_donateur");
+   helper.SetCellValue(1,2,"NOM_DONATEUR");
+   helper.SetCellValue(1,3,"TEL_DONATEUR");
+   helper.SetCellValue(1,4,"ADRESSE_DONATEUR");
+   helper.SetCellValue(1,5,"DON_DONATEUR");
+
                    while (q.next())
                    {
 
@@ -160,9 +162,7 @@ void MainWindow::on_excel_clicked()
                helper.SetCellValue(l,3,q.value(2).toString());
                helper.SetCellValue(l,4,q.value(3).toString());
                helper.SetCellValue(l,5,q.value(4).toString());
-               helper.SetCellValue(l,6,q.value(5).toString());
-               helper.SetCellValue(l,7,q.value(6).toString());
-               helper.SetCellValue(l,8,q.value(7).toString());
+
    l++;
 
                    }
@@ -172,4 +172,101 @@ void MainWindow::on_excel_clicked()
            {
                QMessageBox::critical(this, "Error - Demo", e.what());
            }
+}
+
+void MainWindow::on_pushButton_7_clicked()
+{
+    Form *f=new Form();
+    f->show();
+}
+
+
+
+void MainWindow::on_boutonajoutdon_clicked()
+{
+    bool test;
+    QString id_don=ui->id_don->text();
+    QString id_donateur=ui->iddonateurr->text();
+    QString type_don=ui->comboBox1->currentText();
+    QString quantitee=ui->quantiteedon->text();
+QString cathegorie;
+    if (type_don=="vetement"){
+  cathegorie= (ui->c1->currentText()) += (ui->c2->currentText());}
+    else if (type_don=="meuble")
+    { cathegorie=ui->c3->currentText(); }
+    else { cathegorie=ui->c4->text() ;}
+
+    Dons d(id_don,id_donateur ,quantitee,type_don,cathegorie);
+
+    test=d.ajouterd();
+
+    if (test)
+    {
+         QMessageBox::information(nullptr ,QObject::tr("ok"),
+                                QObject::tr("ajout done \n"
+                             "click cancel to exit")
+                                  , QMessageBox::Cancel
+                                  );
+         ui->tableView_2->setModel(dotmp.afficherd());
+    }
+   else  QMessageBox::critical(nullptr,QObject::tr("not ok"),
+                               QObject::tr("ajout non effectue \n"
+                                 "click cancel to exit")
+                               , QMessageBox::Cancel
+                               );
+}
+
+void MainWindow::on_supprimerdon_clicked()
+{
+
+
+    QString id_don=ui->lineEdit_22->text();
+    bool test=dotmp.supprimerd(id_don);
+    if (test)
+    {
+         QMessageBox::information(nullptr ,QObject::tr("ok"),
+                                QObject::tr("suppr done \n"
+                             "click cancel to exit")
+                                  , QMessageBox::Cancel
+                                  );
+ui->tableView_2->setModel(dotmp.afficherd());
+    }
+   else  QMessageBox::critical(nullptr,QObject::tr("not ok"),
+                               QObject::tr("suppr non eff \n"
+                                 "click cancel to exit")
+                               , QMessageBox::Cancel
+                               );
+}
+
+void MainWindow::on_pushButton_4_clicked()
+{ QString id_don=ui->lineEdit_21->text();
+    QString id_donateur=ui->lineEdit_20->text();
+    QString type_don=ui->comboBox_3->currentText();
+    QString quantitee=ui->lineEdit_tlp_2->text();
+    QString cathegorie;
+
+      if (type_don=="vetement"){
+      cathegorie= (ui->c11->currentText()) += (ui->c22->currentText());}
+        else if (type_don=="meuble")
+        { cathegorie=ui->c33->currentText() ;}
+        else { cathegorie=ui->c44->text() ;}
+
+
+Dons d1(id_don,id_donateur ,quantitee,type_don,cathegorie);
+    bool test=d1.modifierd(id_don);
+    if (test)
+    {
+        ui->tableView_2->setModel(dotmp.afficherd());
+         QMessageBox::information(nullptr ,QObject::tr("ok"),
+                                QObject::tr("modif done \n"
+                             "click cancel to exit")
+                                  , QMessageBox::Cancel
+                                  );
+ui->tableView_2->setModel(dotmp.afficherd());
+    }
+   else  QMessageBox::critical(nullptr,QObject::tr("not ok"),
+                               QObject::tr("modiif non eff \n"
+                                 "click cancel to exit")
+                               , QMessageBox::Cancel
+                               );
 }

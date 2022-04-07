@@ -18,11 +18,11 @@ public:
     QString getadressee_donateur(){return ADRESSE_DONATEUR;}
     QString getdon_donateur(){return DON_DONATEUR;}
     //setters
-   void getid_donateur(QString i){ID_DONATEUR=i;}
-    void getnom_donateur(QString n){NOM_DONATEUR=n;}
-    void gettel_donateur(QString t){TEL_DONATEUR=t;}
-    void getadressee_donateur(QString a){ADRESSE_DONATEUR=a;}
-     void getdon_donateur(QString d){DON_DONATEUR=d;}
+   void setid_donateur(QString i){ID_DONATEUR=i;}
+    void setnom_donateur(QString n){NOM_DONATEUR=n;}
+    void settel_donateur(QString t){TEL_DONATEUR=t;}
+    void setadressee_donateur(QString a){ADRESSE_DONATEUR=a;}
+     void setdon_donateur(QString d){DON_DONATEUR=d;}
 
     //foctionnalite de base relatives a l entitee etudiant
     bool ajouter();
