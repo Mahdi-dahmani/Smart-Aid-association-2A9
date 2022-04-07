@@ -20,6 +20,7 @@ SOURCES += \
     excelexporthelper.cpp \
     form.cpp \
     form2.cpp \
+    login.cpp \
     main.cpp \
     mainwindow.cpp \
     membre.cpp
@@ -29,12 +30,14 @@ HEADERS += \
     excelexporthelper.h \
     form.h \
     form2.h \
+    login.h \
     mainwindow.h \
     membre.h
 
 FORMS += \
     form.ui \
     form2.ui \
+    login.ui \
     mainwindow.ui
 
 # Default rules for deployment.

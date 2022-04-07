@@ -101,10 +101,7 @@ Form::Form(QWidget *parent) :
      chartview->setRenderHint(QPainter::Antialiasing);
 
 
-    /* MainWindow w;
-     w.setCentralWidget(chartview);
-     w.resize(420,300);
- w.show();*/
+
 
 }
 

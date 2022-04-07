@@ -10,7 +10,7 @@
 #include <QtCharts/QCategoryAxis>
 #include <QtCharts/QPieSeries>
 #include "mainwindow.h"
-
+#include "login.h"
 
 #include <QMessageBox>
 #include <QApplication>
@@ -27,6 +27,8 @@ int main(int argc, char *argv[])
 
     Connection c;
     bool check = c.createconnect();
+    Login l;
+    l.show();
 MainWindow w;
     w.show();
 
