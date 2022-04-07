@@ -11,6 +11,9 @@
 #include "excelexporthelper.h"
 #include <QFile>
 #include <stdexcept>
+#include <QWidget>
+#include <QWidgetAction>
+#include <form.h>
 using namespace std;
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -37,7 +40,7 @@ void MainWindow::on_pushButton_4_clicked()
     QString age=ui->age->text();
     QString tel=ui->tel->text();
     QString adresse=ui->adresse->text();
-    QString besoin=ui->besoin->text();
+    QString besoin=ui->besoin->currentText();
     QString mbr=ui->mbr->text();
     QString date=ui->date->text();
 
@@ -65,6 +68,7 @@ void MainWindow::on_pushButton_4_clicked()
                                                              "Click Cancel to exit. "),QMessageBox::Cancel);
 
                     }
+
     else
         {
             e.ajouter();
@@ -102,7 +106,7 @@ void MainWindow::on_pushButton_2_clicked()
     QString age=ui->lineEdit_4->text();
     QString tel=ui->lineEdit_5->text();
     QString adresse=ui->lineEdit_6->text();
-    QString besoin=ui->lineEdit_7->text();
+    QString besoin=ui->besoin->currentText();
     QString mbr=ui->spinBox->text();
 
     QString date=ui->dateEdit->text();
@@ -121,7 +125,7 @@ void MainWindow::on_pushButton_2_clicked()
 
                 }
         else
-            if(sexe != "femme" && sexe !="homme")
+            if(sexe != "femme" && sexe !="homme" && sexe != sexe.isEmpty())
                     {
 
                         QMessageBox::critical(nullptr, QObject::tr("Not OK"),
@@ -129,6 +133,7 @@ void MainWindow::on_pushButton_2_clicked()
                                                              "Click Cancel to exit. "),QMessageBox::Cancel);
 
                     }
+
         else{
             bool test = e.modifier(id);
             if (test)
@@ -175,16 +180,17 @@ void MainWindow::on_excel_clicked()
                 ExcelExportHelper helper;
     int l=2;
                 QSqlQuery q;
-                if(q.exec("SELECT * FROM membres"))
+                if(q.exec("SELECT * FROM NECESSITEUX"))
                 {
-    helper.SetCellValue(1,1,"ID");
-    helper.SetCellValue(1,2,"NOM");
-    helper.SetCellValue(1,3,"PRENOM");
-    helper.SetCellValue(1,4,"USERNAME");
-    helper.SetCellValue(1,5,"EMAIL");
-    helper.SetCellValue(1,6,"MDP");
-    helper.SetCellValue(1,7,"NBPOINTS");
-    helper.SetCellValue(1,8,"BRANCHE");
+    helper.SetCellValue(1,1,"ID_NECESSITEUX");
+    helper.SetCellValue(1,2,"NOM_NECESSITEUX");
+    helper.SetCellValue(1,3,"SEXE");
+    helper.SetCellValue(1,4,"AGE");
+    helper.SetCellValue(1,5,"TEL");
+    helper.SetCellValue(1,6,"ADRESSE");
+    helper.SetCellValue(1,7,"BESOIN");
+    helper.SetCellValue(1,8,"MBR_FAMILLE");
+    helper.SetCellValue(1,9,"DATE_NECESSITEUX");
                     while (q.next())
                     {
 
@@ -196,6 +202,7 @@ void MainWindow::on_excel_clicked()
                 helper.SetCellValue(l,6,q.value(5).toString());
                 helper.SetCellValue(l,7,q.value(6).toString());
                 helper.SetCellValue(l,8,q.value(7).toString());
+                helper.SetCellValue(l,9,q.value(7).toString());
     l++;
 
                     }
@@ -205,4 +212,76 @@ void MainWindow::on_excel_clicked()
             {
                 QMessageBox::critical(this, "Error - Demo", e.what());
             }
+}
+
+void MainWindow::on_pushButton_5_clicked()
+{
+    Form *f= new Form();
+        f->show();
+}
+
+void MainWindow::on_pushButton_9_clicked()
+{
+   /* QSqlQuery q,q1;
+    q.prepare("Select distinct tel from necessiteux");
+    q.exec();
+    int tot[100],i=0;
+    while (q.next())
+    {
+        q1.prepare("Select * from necessiteux where tel = :tel");
+        q1.bindValue(":tel",q.value(4));
+        q1.exec();
+        while (q1.next())
+            tot[i]++;
+        i++;
+
+    }*/
+    /*QSqlQueryModel * model=new QSqlQueryModel();
+        model->setQuery("Select  ID_NECESSITEUX, SEXE, TEL, count(TEL) from NECESSITEUX");
+
+        model->setHeaderData(0,Qt::Horizontal,QObject::tr("ID_NECESSITEUX"));
+         model->setHeaderData(1,Qt::Horizontal,QObject::tr("SEXE"));
+        model->setHeaderData(2,Qt::Horizontal,QObject::tr("TEL"));*/
+        /*model->setHeaderData(3,Qt::Horizontal,QObject::tr("count(TEL)"));*/
+        /*model->setHeaderData(3,Qt::Horizontal,QObject::tr("AGE"));
+        model->setHeaderData(4,Qt::Horizontal,QObject::tr("TEL"));
+        model->setHeaderData(5,Qt::Horizontal,QObject::tr("ADRESSE"));
+        model->setHeaderData(6,Qt::Horizontal,QObject::tr("BESOIN"));
+        model->setHeaderData(7,Qt::Horizontal,QObject::tr("MBR_FAMILLE"));
+        model->setHeaderData(8,Qt::Horizontal,QObject::tr("DATE_NECESSITEUX"));*/
+        // ui->tableView->setModel(model);
+        QSqlQueryModel * modell=new QSqlQueryModel();
+         modell->setQuery("Select   BESOIN, tel, count(tel) as occurence from necessiteux group by    BESOIN, tel");
+
+        modell->setHeaderData(8,Qt::Horizontal,QObject::tr("besoin"));
+         modell->setHeaderData(9,Qt::Horizontal,QObject::tr("Telephone"));
+         modell->setHeaderData(10,Qt::Horizontal,QObject::tr("occurance"));
+        /* model->insertColumns(9,)
+         QSqlQueryModel * modelll= model + modell;*/
+ ui->tableView->setModel(modell);
+          /* ui->tableView->setModel(model);*/
+
+
+}
+
+
+void MainWindow::on_pushButton_10_clicked()
+{
+    QSqlQueryModel * model=new QSqlQueryModel();
+
+    model->setQuery("Select * from necessiteux  order by besoin asc, age desc, MBR_FAMILLE desc");
+    model->setHeaderData(0,Qt::Horizontal,QObject::tr("ID_NECESSITEUX"));
+    model->setHeaderData(1,Qt::Horizontal,QObject::tr("NOM_NECESSITEUX"));
+    model->setHeaderData(2,Qt::Horizontal,QObject::tr("SEXE"));
+    model->setHeaderData(3,Qt::Horizontal,QObject::tr("AGE"));
+    model->setHeaderData(4,Qt::Horizontal,QObject::tr("TEL"));
+    model->setHeaderData(5,Qt::Horizontal,QObject::tr("ADRESSE"));
+    model->setHeaderData(6,Qt::Horizontal,QObject::tr("BESOIN"));
+    model->setHeaderData(7,Qt::Horizontal,QObject::tr("MBR_FAMILLE"));
+    model->setHeaderData(8,Qt::Horizontal,QObject::tr("DATE_NECESSITEUX"));
+     ui->tableView->setModel(model);
+
+
+
+
 }

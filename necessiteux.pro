@@ -18,6 +18,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     connection.cpp \
     excelexporthelper.cpp \
+    form.cpp \
     main.cpp \
     mainwindow.cpp \
     necessiteux.cpp
@@ -25,10 +26,12 @@ SOURCES += \
 HEADERS += \
     connection.h \
     excelexporthelper.h \
+    form.h \
     mainwindow.h \
     necessiteux.h
 
 FORMS += \
+    form.ui \
     mainwindow.ui
 
 # Default rules for deployment.

@@ -31,6 +31,12 @@ private slots:
 
     void on_excel_clicked();
 
+    void on_pushButton_5_clicked();
+
+    void on_pushButton_9_clicked();
+
+    void on_pushButton_10_clicked();
+
 private:
     Ui::MainWindow *ui;
     NECESSITEUX nes;
