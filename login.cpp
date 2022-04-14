@@ -6,12 +6,26 @@
 #include <QString>
 #include <QSqlQuery>
 #include <QSqlQueryModel>
+#include "arduino.h"
+#include <QtSerialPort/QSerialPort>
+#include <QtSerialPort/QSerialPortInfo>
+#include <QDebug>
 using namespace std;
 Login::Login(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::Login)
 {
     ui->setupUi(this);
+    int ret=A.connect_arduino(); // lancer la connexion à arduino
+    switch(ret){
+    case(0):qDebug()<< "arduino is available and connected to : "<< A.getarduino_port_name();
+        break;
+    case(1):qDebug() << "arduino is available but not connected to :" <<A.getarduino_port_name();
+       break;
+    case(-1):qDebug() << "arduino is not available";
+    }
+     QObject::connect(A.getserial(),SIGNAL(readyRead()),this,SLOT(update_label())); // permet de lancer
+     //le slot update_label suite à la reception du signal readyRead (reception des données).
 }
 
 Login::~Login()
@@ -58,5 +72,29 @@ void Login::on_pushButton_clicked()
 
 void Login::on_pushButton_2_clicked()
 {
+
+}
+void Login::update_label(){
+
+    data=A.read_from_arduino();
+    QSqlQuery q;
+    q.prepare("Select * from Membres where id_membre=:email");
+    qDebug() << data ;
+    q.bindValue(":email",data.toInt());
+    q.exec();
+    q.first();
+    ui->email->setText(q.value(4).toString());
+    ui->mdp->setText(q.value(5).toString());
+    /* if(data=="542")
+
+      { ui->email->setText("ON"); // si les données reçues de arduino via la liaison série sont égales à 1
+    // alors afficher ON
+    ui->mdp->setText("carte");
+    }
+    else if (data=="290")
+
+       { ui->email->setText("OFF");   // si les données reçues de arduino via la liaison série sont égales à 0
+     //alors afficher ON
+    ui->mdp->setText("5omsa");}*/
 
 }

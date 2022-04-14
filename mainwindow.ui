@@ -517,6 +517,19 @@
       <string/>
      </property>
     </widget>
+    <widget class="QPushButton" name="pushButton_8">
+     <property name="geometry">
+      <rect>
+       <x>440</x>
+       <y>40</y>
+       <width>93</width>
+       <height>28</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Annuler</string>
+     </property>
+    </widget>
    </widget>
    <widget class="QPushButton" name="excel">
     <property name="geometry">

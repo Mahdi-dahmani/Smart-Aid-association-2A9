@@ -53,6 +53,8 @@ void on_pushButton_7_clicked(bool checked);
 
 void on_mdm_clicked();
 
+void on_pushButton_8_clicked();
+
 private:
     Ui::MainWindow *ui;
     Membre mem;

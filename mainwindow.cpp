@@ -350,7 +350,7 @@ void MainWindow::on_excel_clicked()
 {
     try
         {
-            const QString fileName = "c:\\test.xlsx";
+            const QString fileName = "c:\test.xlsx";
 
             ExcelExportHelper helper;
 int l=2;
@@ -396,4 +396,10 @@ void MainWindow::on_mdm_clicked()
 {
     Form2 *f =new Form2();
     f->show();
+}
+
+void MainWindow::on_pushButton_8_clicked()
+{
+    ui->tableView->setModel(mem.afficher());
+    ui->rech->setText("");
 }
