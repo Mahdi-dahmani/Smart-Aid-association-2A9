@@ -895,38 +895,38 @@
       </rect>
      </property>
     </widget>
-    <widget class="QComboBox" name="comboBox_2">
+    <widget class="QComboBox" name="besoin_2">
      <property name="geometry">
       <rect>
-       <x>150</x>
-       <y>270</y>
+       <x>160</x>
+       <y>280</y>
        <width>141</width>
        <height>22</height>
       </rect>
      </property>
      <item>
       <property name="text">
-       <string>sanguin</string>
+       <string>A_sanguin</string>
       </property>
      </item>
      <item>
       <property name="text">
-       <string>cancer</string>
+       <string>B_cancer</string>
       </property>
      </item>
      <item>
       <property name="text">
-       <string>diabete</string>
+       <string>C_diabete</string>
       </property>
      </item>
      <item>
       <property name="text">
-       <string>faim</string>
+       <string>D_faim</string>
       </property>
      </item>
      <item>
       <property name="text">
-       <string>vestimentaire</string>
+       <string>E_vestimentaire</string>
       </property>
      </item>
     </widget>
