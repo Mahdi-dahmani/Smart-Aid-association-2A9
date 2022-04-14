@@ -1,4 +1,4 @@
-QT       += core gui sql
+QT       += core gui sql axcontainer charts serialport
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -16,17 +16,28 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    arduino.cpp \
+    avis.cpp \
     connection.cpp \
     evenement.cpp \
+    excelexporthelper.cpp \
+    form.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    stat.cpp
 
 HEADERS += \
+    arduino.h \
+    avis.h \
     connection.h \
     evenement.h \
-    mainwindow.h
+    excelexporthelper.h \
+    form.h \
+    mainwindow.h \
+    stat.h
 
 FORMS += \
+    form.ui \
     mainwindow.ui
 
 # Default rules for deployment.

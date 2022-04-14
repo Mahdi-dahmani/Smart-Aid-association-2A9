@@ -3,6 +3,8 @@
 
 #include <QMainWindow>
 #include <evenement.h>
+#include <avis.h>
+#include <arduino.h>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -25,8 +27,26 @@ private slots:
 
     void on_pushButton_3_clicked();
 
+    void on_pushButton_5_clicked();
+
+    void on_pushButton_6_clicked();
+
+    void on_excel_clicked();
+
+    void on_pushButton_7_clicked();
+
+
+
+    void on_pushButton_9_clicked();
+
+
+
 private:
     Ui::MainWindow *ui;
      EVENEMENT Event;
+     avis A;
+     Arduino Ar;
+     QByteArray data;
+
 };
 #endif // MAINWINDOW_H

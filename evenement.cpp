@@ -1,8 +1,10 @@
 #include "evenement.h"
 #include <QString>
 #include <QSqlQuery>
-
+#include <string>
+#include <string.h>
 #include <QSqlQueryModel>
+using namespace std;
 EVENEMENT::EVENEMENT()
 {
 
@@ -43,8 +45,26 @@ bool EVENEMENT::ajouter()
     b.bindValue(":budget",BUDGET_EVENT);
 
     b.bindValue(":localisation",LOCALISATION);
+    string test=NOM_EVENT.toStdString();
+        int check=0,i=0,len=test.length();
+        while ((check==0)&&(i<len))
+        {if (isdigit(test[i]))
+        {
+            check=1;
+        }
+        i++;}
+        if (check==1)
+        {
+              return false ;
 
-    return b.exec();
+        }
+        else
+        {
+            return b.exec();
+        }
+
+
+
 }
 bool EVENEMENT::supprimer(QString IDD)
 {
@@ -71,6 +91,21 @@ QSqlQueryModel * EVENEMENT::afficher()
 
     return model;
 }
+ QSqlQueryModel * EVENEMENT::rechercher(QString rech)
+ {
+     QSqlQuery b;
+     QSqlQueryModel * model=new QSqlQueryModel();
+     model->setQuery("SELECT * FROM EVENEMENT where  ID_EVENT='"+rech+"' ");
+
+     return model;
+
+
+
+
+ }
+
+
+
 
 bool EVENEMENT::modifier(QString idd)
 {
@@ -78,7 +113,7 @@ QSqlQuery b;
 
 b.prepare("update EVENEMENT set NOM_EVENT=:nom ,DATE_EVENT=:date ,BUDGET_EVENT=:budget ,LOCALISATION=:local , nb_point= 0 where ID_EVENT=:idd");
 
-b.bindValue(":idd",ID_EVENT);
+b.bindValue(":idd",idd);
 b.bindValue(":nom",NOM_EVENT);
 b.bindValue(":date",DATE_EVENT);
 b.bindValue(":budget",BUDGET_EVENT);
@@ -87,6 +122,11 @@ b.bindValue(":local",LOCALISATION);
 
 return b.exec();
 }
+
+
+
+
+
 //hello
 //JUYGGH
 
