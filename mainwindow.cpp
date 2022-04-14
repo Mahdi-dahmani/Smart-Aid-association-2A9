@@ -16,6 +16,27 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    int ret=A.connect_arduino();
+    switch(ret){
+    case (0):qDebug()<<"connected"<<A.getarduino_port_name();
+        break;
+    case(1):qDebug()<<"not connected"<<A.getarduino_port_name();
+    break;
+    case (-1):qDebug()<<"eruure"<<A.getarduino_port_name();
+    }
+    QObject::connect(A.getserial(),SIGNAL(readyRead()),this,SLOT(update_label()));
+
+    QSqlQueryModel * model =new QSqlQueryModel();
+
+    QString option=ui->option->currentText();
+
+ {       model->setQuery("SELECT * FROM historique ;");
+         ui->tableView_2->setModel(model);
+     }
+    {       model->setQuery("SELECT * FROM sponsor ;");
+            ui->tableView->setModel(model);
+        }
+
 
 
 }
@@ -23,6 +44,7 @@ MainWindow::MainWindow(QWidget *parent)
 MainWindow::~MainWindow()
 {
     delete ui;
+
 }
 
 
@@ -77,7 +99,7 @@ void MainWindow::on_Supprimer_clicked()
         s.supprimer(id);
         ui->tableView->setModel( spon.afficher());
         QString operation="supprimer";
-        historique h(operation,id,"NOM_SPONSOR");
+        historique h(operation,id,"mahdi");
          h.Ajouter();
          ui->tableView_2->setModel(h.afficher());
 }
@@ -313,6 +335,31 @@ void MainWindow::on_export_2_clicked()
 
 void MainWindow::on_pushButton_3_clicked()
 {
-    ui->tableView_2->setModel(h.afficher());
+A.write_to_arduino("L");
 
+}
+
+
+void MainWindow::on_pushButton_clicked()
+{
+    A.write_to_arduino("F");
+
+}
+
+void MainWindow::on_pushButton_5_clicked()
+{
+    A.write_to_arduino("B");
+}
+
+void MainWindow::on_pushButton_4_clicked()
+{
+   A.write_to_arduino("G");
+}
+void MainWindow::update_label()
+{
+data=A.read_from_arduino();
+if (data=="F")
+    ui->label1->setText("FORWARD");
+else if (data=="R")
+    ui->label1->setText("RIGHT");
 }

@@ -3,6 +3,7 @@
 #include <sponsor1.h>
 #include <QMainWindow>
 #include "historique.h"
+#include "arduino.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -59,9 +60,17 @@ private slots:
 
     void on_tableView_activated(const QModelIndex &index);
 
+    void on_adresse_3_textChanged(const QString &arg1);
+
+    void on_pushButton_5_clicked();
+
+    void on_pushButton_4_clicked();
+void  update_label();
 private:
     Ui::MainWindow *ui;
      Sponsor1 spon;
      historique h;
+     Arduino A;
+     QByteArray data;
 };
 #endif // MAINWINDOW_H

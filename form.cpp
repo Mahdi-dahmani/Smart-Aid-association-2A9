@@ -75,10 +75,10 @@ Form::Form(QWidget *parent) :
 
     ui->setupUi(this);
     QPieSeries *series = new QPieSeries();
-     series->append("<1000",pour_2001);
-     series->append("1000<4000",pour_2000);
-     series->append("4000<7000",pour_2003);
-     series->append("7000<9000",pour_2005);
+     series->append("1000",pour_2001);
+     series->append("4000",pour_2000);
+     series->append("7000",pour_2003);
+     series->append("9000",pour_2005);
      series->append("10000",pour_2006);
      QPieSlice *slice0= series->slices().at(0);
      slice0->setLabelVisible();
@@ -99,7 +99,7 @@ Form::Form(QWidget *parent) :
       slice4->setBrush(Qt::blue);
      QChart *chart = new QChart();
      chart->addSeries(series);
-     chart->setTitle("Membre pour chaque departement");
+     chart->setTitle("montant pour chaque departement");
      chart->legend()->hide();
 
      QChartView *chartview = new QChartView(chart,ui->widget);
