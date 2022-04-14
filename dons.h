@@ -3,7 +3,7 @@
 
 #include <QMainWindow>
 #include <QObject>
-#include <QQuickItem>
+
 #include <QSharedDataPointer>
 #include <QWidget>
 #include <QSqlQuery>
