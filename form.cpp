@@ -1,5 +1,4 @@
 #include "form.h"
-
 #include <QtCharts/QPieSlice>
 #include <QtCharts/QChartView>
 #include <QtWidgets/QMainWindow>
@@ -17,7 +16,6 @@
 #include "mainwindow.h"
 #include "evenement.h"
 #include"ui_form.h"
-
 QT_CHARTS_USE_NAMESPACE
 Form::Form(QWidget *parent) :
     QWidget(parent),

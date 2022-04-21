@@ -1,10 +1,22 @@
 #include "arduino.h"
+#include "QtDebug"
 
 Arduino::Arduino()
 {
+    data="";
+    arduino_port_name="";
+    serial=new QSerialPort;
 
 }
+QSerialPort* Arduino::getserial()
+{
+    return serial;
+}
 
+QString Arduino::getarduino_port_name(){
+    return arduino_port_name;
+
+}
 
 int Arduino::connect_arduino()
 {   // recherche du port sur lequel la carte arduino identifée par  arduino_uno_vendor_id

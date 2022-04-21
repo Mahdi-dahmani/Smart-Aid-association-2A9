@@ -41,11 +41,36 @@ private slots:
 
 
 
+    void on_pushButton_8_clicked();
+
+    void on_pushButton_13_clicked();
+
+    void on_pushButton_12_clicked();
+
+    void on_pushButton_14_clicked();
+    void update_label();
+
+    void on_pushButton_8_pressed();
+
+    void on_pushButton_8_released();
+
+    void on_pushButton_13_pressed();
+
+    void on_pushButton_13_released();
+
+    void on_pushButton_12_pressed();
+
+    void on_pushButton_12_released();
+
+    void on_pushButton_14_pressed();
+
+    void on_pushButton_14_released();
+
 private:
     Ui::MainWindow *ui;
      EVENEMENT Event;
      avis A;
-     Arduino Ar;
+     Arduino ar;
      QByteArray data;
 
 };
