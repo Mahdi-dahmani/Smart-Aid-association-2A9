@@ -42,31 +42,46 @@ void Login::on_pushButton_clicked()
    q.bindValue(":email",email);
    q.exec();
    q.first();
+
    if (q.first())
    {
        if (q.value(5)==mdp)
        {
            if (q.value(7)=="Event")
-          { QMessageBox::information(nullptr, QObject::tr("OK"),
-                                    QObject::tr("Welcome!Event departement"), QMessageBox::Cancel);}
+          { QString mem = q.value(1).toString()+ " "+ q.value(2).toString();
+               A.write_to_arduino(mem.toUtf8());
+               QMessageBox::information(nullptr, QObject::tr("OK"),
+                                    QObject::tr("Welcome!Event departement"), QMessageBox::Cancel);
+           }
           else if (q.value(7)=="Don")
-          { QMessageBox::information(nullptr, QObject::tr("OK"),
-                                    QObject::tr("Welcome!Donateur departement"), QMessageBox::Cancel);}
+          { QString mem = q.value(1).toString()+ " "+ q.value(2).toString();
+               A.write_to_arduino(mem.toUtf8());
+               QMessageBox::information(nullptr, QObject::tr("OK"),
+                                    QObject::tr("Welcome!Donateur departement"), QMessageBox::Cancel);
+               }
           else if (q.value(7)=="Depense")
-          { QMessageBox::information(nullptr, QObject::tr("OK"),
-                                    QObject::tr("Welcome! Depense departement"), QMessageBox::Cancel);}
+          { QString mem = q.value(1).toString()+ " "+ q.value(2).toString();
+               A.write_to_arduino(mem.toUtf8());
+               QMessageBox::information(nullptr, QObject::tr("OK"),
+                                    QObject::tr("Welcome! Depense departement"), QMessageBox::Cancel);
+              }
           else if (q.value(7)=="Sponsor")
-          { QMessageBox::information(nullptr, QObject::tr("OK"),
-                                    QObject::tr("Welcome! Sponsor departement"), QMessageBox::Cancel);}
+          { QString mem = q.value(1).toString()+ " "+ q.value(2).toString();
+               A.write_to_arduino(mem.toUtf8());
+               QMessageBox::information(nullptr, QObject::tr("OK"),
+                                    QObject::tr("Welcome! Sponsor departement"), QMessageBox::Cancel);
+              }
        }
        else
        {
+           A.write_to_arduino("MDP incorrect");
            QMessageBox::information(nullptr, QObject::tr("OK"),
                                     QObject::tr("MDP incorrect"), QMessageBox::Cancel);
        }
 
    }
-   else { QMessageBox::information(nullptr, QObject::tr("OK"),
+   else {  A.write_to_arduino("Email incorrect");
+       QMessageBox::information(nullptr, QObject::tr("OK"),
                                    QObject::tr("Email incorrect"), QMessageBox::Cancel);}
 }
 
