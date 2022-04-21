@@ -50,6 +50,8 @@ private slots:
 
 
 
+    void on_art_clicked();
+
 private:
     Ui::MainWindow *ui;
     donateurs dtmp;

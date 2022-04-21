@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="tab">
      <attribute name="title">
@@ -590,6 +590,42 @@
         </property>
         <property name="text">
          <string>terminer </string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="art">
+        <property name="geometry">
+         <rect>
+          <x>950</x>
+          <y>510</y>
+          <width>121</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Arreter</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_4">
+        <property name="geometry">
+         <rect>
+          <x>720</x>
+          <y>520</y>
+          <width>71</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Etat</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="etat">
+        <property name="geometry">
+         <rect>
+          <x>790</x>
+          <y>511</y>
+          <width>131</width>
+          <height>41</height>
+         </rect>
         </property>
        </widget>
       </widget>

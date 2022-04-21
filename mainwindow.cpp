@@ -293,26 +293,26 @@ void MainWindow::update_label()
 
     if(data=="1")
 
-        ui->label_3->setText("ON"); // si les données reçues de arduino via la liaison série sont égales à 1
+        ui->etat->setText("Mouvement"); // si les données reçues de arduino via la liaison série sont égales à 1
     // alors afficher ON
 
     else if (data=="0")
 
-        ui->label_3->setText("OFF");   // si les données reçues de arduino via la liaison série sont égales à 0
+        ui->etat->setText("Pas de mouvement");   // si les données reçues de arduino via la liaison série sont égales à 0
      //alors afficher ON
 }
 
-void MainWindow::on_pushButton_clicked()   // implémentation du slot bouton on
+/*void MainWindow::on_pushButton_clicked()   // implémentation du slot bouton on
 {
      A.write_to_arduino("1"); //envoyer 1 à arduino
 }
-
+*/
 void MainWindow::on_pushButton_2_clicked()  // implémentation du slot bouton off
 {
 
-     A.write_to_arduino("0");  //envoyer 0 à arduino
+      //envoyer 0 à arduino
 }
-
+/*
 void MainWindow::on_pushButton_3_clicked()  // implémentation du slot bouton +
 {
     A.write_to_arduino("2");   //envoyer 2 à arduino
@@ -321,4 +321,10 @@ void MainWindow::on_pushButton_3_clicked()  // implémentation du slot bouton +
 void MainWindow::on_pushButton_4_clicked() // implémentation du slot bouton -
 {
     A.write_to_arduino("3");  //envoyer 3 à arduino
+}*/
+
+void MainWindow::on_art_clicked()
+{
+    A.write_to_arduino("0");
+    ui->etat->setText("Arréter");
 }
