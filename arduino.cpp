@@ -1,6 +1,9 @@
 #include "arduino.h"
+#include <QtDebug>
+#include <QtBluetooth>
 Arduino::Arduino()
 {
+    data ="";
     arduino_port_name="";
     arduino_is_available=false;
     serial=new QSerialPort;
@@ -56,25 +59,40 @@ int Arduino::close_arduino()
 }
 
 
- QByteArray Arduino::read_from_arduino()
+QByteArray Arduino::read_from_arduino()
 {
-    if(serial->isReadable()){
-         data=serial->readAll(); //récupérer les données reçues
+   if(serial->isReadable()){
+        data=serial->readAll(); //récupérer les données reçues
 
-         return data;
-    }
-    return  data;
- }
+        return data;
+   }
+   return  data;
+}
+
 
 int Arduino::write_to_arduino( QByteArray d)
-
 {
 
     if(serial->isWritable()){
         serial->write(d);  // envoyer des donnés vers Arduino
-    }else{
-        qDebug() << "eruure write to serial!";
+        qDebug() << "done";
     }
-
+    else
+        qDebug() << "eruure write to serial!";
 
 }
+/* void FenProjet::envoie(char trame)
+{
+        QByteArray byte; //byte a envoyer
+        qint64 bw = 0; //bytes really writen
+ 
+        byte.clear(); // on efface le contenu de byte
+        byte.append(trame); // on ajoute "value" a byte
+ 
+        if(arduino != NULL && arduino->isWritable() ){ // on vérifie que le port existe toujours
+            bw = arduino->write(byte); // on écrit les byte
+            //(bw récupere le nombre de byte écris)
+            qDebug() << bw << "byte(s) written | Value sent:" << trame ;
+            arduino->flush(); // on attend la fin de la transmission
+        }
+*/

@@ -1,10 +1,13 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 #include <sponsor1.h>
+#include<QObject>
 #include <QMainWindow>
 #include "historique.h"
 #include "arduino.h"
-
+#include <QtDebug>
+#include <QtBluetooth>
+#include<QBluetoothDeviceDiscoveryAgent>
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -14,9 +17,10 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
+
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
-
+QBluetoothDeviceDiscoveryAgent *agent=new QBluetoothDeviceDiscoveryAgent;
 private slots:
     void on_ajouter_clicked();
 
@@ -66,6 +70,38 @@ private slots:
 
     void on_pushButton_4_clicked();
 void  update_label();
+
+
+void on_pushButton_pressed();
+
+void on_kodem_clicked();
+
+void on_isar_clicked();
+
+void on_imine_clicked();
+
+void on_lteli_clicked();
+
+void on_stop_clicked();
+void deviceDiscovered(const QBluetoothDeviceInfo &device);
+
+void on_kodem_pressed();
+
+void on_kodem_released();
+
+void on_imine_pressed();
+
+void on_imine_released();
+
+void on_isar_pressed();
+
+void on_isar_released();
+
+void on_lteli_pressed();
+
+void on_lteli_released();
+protected:
+
 private:
     Ui::MainWindow *ui;
      Sponsor1 spon;

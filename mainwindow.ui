@@ -344,7 +344,7 @@ color: rgb(170, 0, 0);</string>
         <string>DESC</string>
        </property>
       </widget>
-      <widget class="QPushButton" name="pushButton">
+      <widget class="QPushButton" name="kodem">
        <property name="geometry">
         <rect>
          <x>260</x>
@@ -354,7 +354,7 @@ color: rgb(170, 0, 0);</string>
         </rect>
        </property>
        <property name="text">
-        <string>9odem</string>
+        <string>Forward</string>
        </property>
       </widget>
       <widget class="QPushButton" name="export_2">
@@ -383,7 +383,7 @@ color: rgb(170, 0, 0);</string>
         <string>Stat</string>
        </property>
       </widget>
-      <widget class="QPushButton" name="pushButton_3">
+      <widget class="QPushButton" name="isar">
        <property name="geometry">
         <rect>
          <x>110</x>
@@ -393,10 +393,10 @@ color: rgb(170, 0, 0);</string>
         </rect>
        </property>
        <property name="text">
-        <string>isar</string>
+        <string>Left</string>
        </property>
       </widget>
-      <widget class="QPushButton" name="pushButton_4">
+      <widget class="QPushButton" name="imine">
        <property name="geometry">
         <rect>
          <x>380</x>
@@ -406,10 +406,10 @@ color: rgb(170, 0, 0);</string>
         </rect>
        </property>
        <property name="text">
-        <string>imine</string>
+        <string>Right</string>
        </property>
       </widget>
-      <widget class="QPushButton" name="pushButton_5">
+      <widget class="QPushButton" name="lteli">
        <property name="geometry">
         <rect>
          <x>280</x>
@@ -419,10 +419,10 @@ color: rgb(170, 0, 0);</string>
         </rect>
        </property>
        <property name="text">
-        <string>lteli</string>
+        <string>Back</string>
        </property>
       </widget>
-      <widget class="QLabel" name="label1">
+      <widget class="QLabel" name="labelee">
        <property name="geometry">
         <rect>
          <x>260</x>
@@ -433,6 +433,16 @@ color: rgb(170, 0, 0);</string>
        </property>
        <property name="text">
         <string>TextLabel</string>
+       </property>
+      </widget>
+      <widget class="QTableView" name="tablehistorique">
+       <property name="geometry">
+        <rect>
+         <x>500</x>
+         <y>400</y>
+         <width>281</width>
+         <height>231</height>
+        </rect>
        </property>
       </widget>
      </widget>

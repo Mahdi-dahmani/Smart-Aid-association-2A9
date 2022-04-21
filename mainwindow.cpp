@@ -10,6 +10,10 @@
 #include <stdexcept>
 #include "excelexporthelper.h"
 #include "historique.h"
+#include<QtBluetooth>
+#include<QKeyEvent>
+
+
 using namespace std;
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -33,9 +37,15 @@ MainWindow::MainWindow(QWidget *parent)
  {       model->setQuery("SELECT * FROM historique ;");
          ui->tableView_2->setModel(model);
      }
-    {       model->setQuery("SELECT * FROM sponsor ;");
-            ui->tableView->setModel(model);
-        }
+
+
+    QSqlQueryModel * modell=new QSqlQueryModel();
+    modell->setQuery("select * from CAR");
+    modell->setHeaderData(0,Qt::Horizontal,QObject::tr("IDENTIFIANT_CAR"));
+    modell->setHeaderData(1,Qt::Horizontal,QObject::tr("DATE"));
+    modell->setHeaderData(2,Qt::Horizontal,QObject::tr("ACTION"));
+    ui->tablehistorique->setModel(modell);
+
 
 
 
@@ -44,7 +54,8 @@ MainWindow::MainWindow(QWidget *parent)
 MainWindow::~MainWindow()
 {
     delete ui;
-
+    connect(agent,SIGNAL(deviceDiscovered(QBluetoothDeviceInfo)),this,SLOT(deviceDiscovered(QBluetoothDeviceInfo)));
+    agent->start();
 }
 
 
@@ -333,33 +344,86 @@ void MainWindow::on_export_2_clicked()
     }
 }
 
-void MainWindow::on_pushButton_3_clicked()
-{
-A.write_to_arduino("L");
 
-}
-
-
-void MainWindow::on_pushButton_clicked()
-{
-    A.write_to_arduino("F");
-
-}
-
-void MainWindow::on_pushButton_5_clicked()
-{
-    A.write_to_arduino("B");
-}
-
-void MainWindow::on_pushButton_4_clicked()
-{
-   A.write_to_arduino("G");
-}
 void MainWindow::update_label()
 {
 data=A.read_from_arduino();
-if (data=="F")
-    ui->label1->setText("FORWARD");
-else if (data=="R")
-    ui->label1->setText("RIGHT");
+if (data=="FFF"){
+    ui->labelee->setText("FORWARD");
+    QSqlQuery q;
+    q.prepare("INSERT INTO CAR (ID_ACTION,DATE_ACTION,ACTION) VALUES (CAR_SEQ1.nextval,sysdate,'FORWARD')");
+    q.exec();
 }
+else if (data=="RRR"){
+    ui->labelee->setText("RIGHT");
+    QSqlQuery q;
+    q.prepare("INSERT INTO CAR (ID_ACTION,DATE_ACTION,ACTION) VALUES (CAR_SEQ1.nextval,sysdate,'RIGHT')");
+    q.exec();
+}
+else if (data=="LLL"){
+    ui->labelee->setText("LEFT");
+    QSqlQuery q;
+    q.prepare("INSERT INTO CAR (ID_ACTION,DATE_ACTION,ACTION) VALUES (CAR_SEQ1.nextval,sysdate,'LEFT')");
+    q.exec();
+}
+else if (data=="BBB"){
+    ui->labelee->setText("BACK");
+    QSqlQuery q;
+    q.prepare("INSERT INTO CAR (ID_ACTION,DATE_ACTION,ACTION) VALUES (CAR_SEQ1.nextval,sysdate,'BACK')");
+    q.exec();
+}
+
+QSqlQueryModel * model=new QSqlQueryModel();
+model->setQuery("select * from CAR");
+model->setHeaderData(0,Qt::Horizontal,QObject::tr("IDENTIFIANT_CAR"));
+model->setHeaderData(1,Qt::Horizontal,QObject::tr("DATE"));
+model->setHeaderData(2,Qt::Horizontal,QObject::tr("ACTION"));
+ui->tablehistorique->setModel(model);
+
+
+
+}
+
+
+void MainWindow::on_kodem_pressed()
+{
+   A.write_to_arduino("F");
+
+}
+
+void MainWindow::on_kodem_released()
+{
+     A.write_to_arduino("K");
+}
+
+void MainWindow::on_imine_pressed()
+{
+    A.write_to_arduino("R");
+}
+
+void MainWindow::on_imine_released()
+{
+    A.write_to_arduino("K");
+}
+
+void MainWindow::on_isar_pressed()
+{
+ A.write_to_arduino("L");
+}
+
+void MainWindow::on_isar_released()
+{
+    A.write_to_arduino("K");
+}
+
+void MainWindow::on_lteli_pressed()
+{
+    A.write_to_arduino("B");
+
+}
+
+void MainWindow::on_lteli_released()
+{
+    A.write_to_arduino("K");
+}
+

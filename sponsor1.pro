@@ -1,9 +1,9 @@
-QT       += core gui sql charts axcontainer multimediawidgets
-QT+=serialport
+QT       += core gui sql serialport charts axcontainer multimediawidgets bluetooth
 
 
 
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets serialport
+
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 CONFIG += c++11
 
@@ -38,7 +38,6 @@ HEADERS += \
     sponsor1.h
 
 FORMS += \
-    form.ui \
     mainwindow.ui
 
 # Default rules for deployment.
