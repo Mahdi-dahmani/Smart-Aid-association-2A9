@@ -23,11 +23,14 @@ SOURCES += \
     excelexporthelper.cpp \
     form.cpp \
     form2.cpp \
+    historique.cpp \
     login.cpp \
+    mahdi.cpp \
     main.cpp \
     mainwindow.cpp \
     maraaa.cpp \
-    membre.cpp
+    membre.cpp \
+    sponsor1.cpp
 
 HEADERS += \
     arduino.h \
@@ -37,15 +40,19 @@ HEADERS += \
     excelexporthelper.h \
     form.h \
     form2.h \
+    historique.h \
     login.h \
+    mahdi.h \
     mainwindow.h \
     maraaa.h \
-    membre.h
+    membre.h \
+    sponsor1.h
 
 FORMS += \
     form.ui \
     form2.ui \
     login.ui \
+    mahdi.ui \
     mainwindow.ui \
     maraaa.ui
 

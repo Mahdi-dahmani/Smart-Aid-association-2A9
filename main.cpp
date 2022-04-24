@@ -19,6 +19,7 @@
 #include "ui_form.h"
 #include <QtWidgets/QApplication>
 #include <QFile>
+#include "mahdi.h"
 QT_CHARTS_USE_NAMESPACE
 int main(int argc, char *argv[])
 { //hola
