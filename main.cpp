@@ -11,43 +11,30 @@
 #include <QtCharts/QPieSeries>
 #include "mainwindow.h"
 #include "login.h"
-
+#include "maraaa.h"
 #include <QMessageBox>
 #include <QApplication>
 #include "connection.h"
 #include "form.h"
 #include "ui_form.h"
+#include <QtWidgets/QApplication>
+#include <QFile>
 QT_CHARTS_USE_NAMESPACE
 int main(int argc, char *argv[])
 { //hola
     //hii
     //how are u
 
-    QApplication a(argc, argv);
-
+   QApplication a(argc, argv);
+     QFile styleSheetFile("C:/Users/user/Desktop/2eme/Semestre 2/Projet QT/Projet/Irrorater.qss");
+    qDebug() << QFile::exists("C:/Users/user/Desktop/2eme/Semestre 2/Projet QT/Projet/Irrorater.qss");
+    styleSheetFile.open(QFile::ReadOnly);
+    QString styleSheet = QLatin1String(styleSheetFile.readAll());
+    a.setStyleSheet(styleSheet);
     Connection c;
-    bool check = c.createconnect();
-    Login l;
-    l.show();
-MainWindow w;
-    w.show();
+   c.createconnect();
 
-
-
-    if (check)
-    {
-        QMessageBox::information(nullptr, QObject::tr("OK"),
-                                 QObject::tr("done"), QMessageBox::Cancel);
-
-
-
-    }
-    else
-    {
-        QMessageBox::critical(nullptr, QObject::tr("OK"),
-                                 QObject::tr("Non"), QMessageBox::Cancel);
-    }
-
-
+Login l;
+l.show();
     return a.exec();
 }

@@ -18,29 +18,36 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     arduino.cpp \
     connection.cpp \
+    donateurs.cpp \
+    dons.cpp \
     excelexporthelper.cpp \
     form.cpp \
     form2.cpp \
     login.cpp \
     main.cpp \
     mainwindow.cpp \
+    maraaa.cpp \
     membre.cpp
 
 HEADERS += \
     arduino.h \
     connection.h \
+    donateurs.h \
+    dons.h \
     excelexporthelper.h \
     form.h \
     form2.h \
     login.h \
     mainwindow.h \
+    maraaa.h \
     membre.h
 
 FORMS += \
     form.ui \
     form2.ui \
     login.ui \
-    mainwindow.ui
+    mainwindow.ui \
+    maraaa.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

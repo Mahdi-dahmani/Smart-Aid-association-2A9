@@ -10,6 +10,8 @@
 #include <QtSerialPort/QSerialPort>
 #include <QtSerialPort/QSerialPortInfo>
 #include <QDebug>
+#include "mainwindow.h"
+#include "maraaa.h"
 using namespace std;
 Login::Login(QWidget *parent) :
     QWidget(parent),
@@ -56,8 +58,8 @@ void Login::on_pushButton_clicked()
           else if (q.value(7)=="Don")
           { QString mem = q.value(1).toString()+ " "+ q.value(2).toString();
                A.write_to_arduino(mem.toUtf8());
-               QMessageBox::information(nullptr, QObject::tr("OK"),
-                                    QObject::tr("Welcome!Donateur departement"), QMessageBox::Cancel);
+               Maraaa *w = new Maraaa();
+               w->show();
                }
           else if (q.value(7)=="Depense")
           { QString mem = q.value(1).toString()+ " "+ q.value(2).toString();
@@ -68,9 +70,16 @@ void Login::on_pushButton_clicked()
           else if (q.value(7)=="Sponsor")
           { QString mem = q.value(1).toString()+ " "+ q.value(2).toString();
                A.write_to_arduino(mem.toUtf8());
-               QMessageBox::information(nullptr, QObject::tr("OK"),
-                                    QObject::tr("Welcome! Sponsor departement"), QMessageBox::Cancel);
+
+
               }
+           else if (q.value(7)=="Admin")
+           { QString mem = q.value(1).toString()+ " "+ q.value(2).toString();
+                A.write_to_arduino(mem.toUtf8());
+                MainWindow *w = new MainWindow;
+                w->show();
+
+               }
        }
        else
        {

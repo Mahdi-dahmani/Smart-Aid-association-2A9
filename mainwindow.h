@@ -2,7 +2,8 @@
 #define MAINWINDOW_H
 #include "membre.h"
 #include <QMainWindow>
-
+#include "donateurs.h"
+#include "dons.h"
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -56,6 +57,8 @@ void on_mdm_clicked();
 void on_pushButton_8_clicked();
 
 private:
+donateurs dtmp;
+Dons dotmp;
     Ui::MainWindow *ui;
     Membre mem;
 };
