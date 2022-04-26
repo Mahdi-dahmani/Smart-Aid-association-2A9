@@ -13,7 +13,7 @@
 #include "mainwindow.h"
 #include "maraaa.h"
 #include "ui_mahdi.h"
-#include "mahdi.h"
+
 #include "maissa.h"
 using namespace std;
 Login::Login(QWidget *parent) :
@@ -74,8 +74,7 @@ void Login::on_pushButton_clicked()
           else if (q.value(7)=="Sponsor")
           { QString mem = q.value(1).toString()+ " "+ q.value(2).toString();
                A.write_to_arduino(mem.toUtf8());
- mahdi *m = new mahdi();
-m->show();
+
 
               }
            else if (q.value(7)=="Admin")

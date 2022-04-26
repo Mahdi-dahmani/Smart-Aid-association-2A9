@@ -6,7 +6,7 @@
 #include <QTableView>
 #include "dons.h"
 #include "arduino.h"
-
+#include "avis.h"
 namespace Ui {
 class Maraaa;
 }
@@ -52,12 +52,14 @@ private slots:
 
     void on_art_clicked();
     void on_pushButton_released();
+    void on_pushButton_8_clicked();
+
 private:
     Ui::Maraaa *ui;
     donateurs dtmp;
     Dons dotmp;
     QByteArray data; // variable contenant les données reçues
-
+avis Ar;
     Arduino A;
 };
 
