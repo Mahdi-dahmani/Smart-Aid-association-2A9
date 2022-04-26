@@ -13,6 +13,8 @@
 #include "form.h"
 #include "arduino.h"
 #include "avis.h"
+#include <QProcess>
+
 using namespace std;
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -283,4 +285,15 @@ void MainWindow::on_pushButton_14_pressed()
 void MainWindow::on_pushButton_14_released()
 {
      ar.write_to_arduino("K");
+}
+
+void MainWindow::on_map_clicked()
+{
+    QString program = "C:/Users/HP-PC/Desktop/build-MapTest-Desktop_Qt_5_9_9_MinGW_32bit-Debug/debug/MapTest.exe";
+            QStringList arguments;
+            QProcess *chromeProcess = new QProcess(this);
+            chromeProcess->start(program);
+
+
+
 }

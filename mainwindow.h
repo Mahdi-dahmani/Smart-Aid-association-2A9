@@ -66,6 +66,8 @@ private slots:
 
     void on_pushButton_14_released();
 
+    void on_map_clicked();
+
 private:
     Ui::MainWindow *ui;
      EVENEMENT Event;
