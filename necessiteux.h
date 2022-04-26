@@ -19,7 +19,7 @@ public:
     bool supprimer(QString ID_NECESSITEUX);
     QSqlQueryModel* rechercher(QString rech);
     QSqlQueryModel* trier();
-    QSqlQueryModel* prioriser();
+
 
 
 };

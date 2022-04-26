@@ -60,7 +60,7 @@ void MainWindow::on_pushButton_4_clicked()
 
                 }
         else
-            if(sexe != "femme" && sexe !="homme")
+            if (sexe!= "femme" && sexe !="homme" && sexe != sexe.isEmpty())
                     {
 
                         QMessageBox::critical(nullptr, QObject::tr("Not OK"),
@@ -124,15 +124,6 @@ void MainWindow::on_pushButton_2_clicked()
                                                          "Click Cancel to exit. "),QMessageBox::Cancel);
 
                 }
-        else
-            if(sexe != "femme" && sexe !="homme" && sexe != sexe.isEmpty())
-                    {
-
-                        QMessageBox::critical(nullptr, QObject::tr("Not OK"),
-                                                 QObject::tr("Veuillez entrer homme ou femme!\n"
-                                                             "Click Cancel to exit. "),QMessageBox::Cancel);
-
-                    }
 
         else{
             bool test = e.modifier(id);
