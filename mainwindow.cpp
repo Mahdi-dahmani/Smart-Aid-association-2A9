@@ -45,6 +45,13 @@ MainWindow::MainWindow(QWidget *parent)
 
     ui->setupUi(this);
     ui->tableView->setModel(mem.afficher());
+    QSqlQueryModel  *model = new QSqlQueryModel();
+    model->setQuery("select id_event, nom_event from evenement");
+    model->setHeaderData(0,Qt::Horizontal,QObject::tr("Id_event"));
+
+    model->setHeaderData(1,Qt::Horizontal,QObject::tr("Nom_event"));
+
+ui->tableView_2->setModel(model);
     ui->p_nom->setStyleSheet("background-color: rgba(255, 255, 255, 0);");
     ui->p_id->setStyleSheet("background-color: rgba(255, 255, 255, 0);");
     ui->p_prenom->setStyleSheet("background-color: rgba(255, 255, 255, 0);");
@@ -401,6 +408,69 @@ void MainWindow::on_p_id_clicked()
 
 void MainWindow::on_pushButton_7_clicked()
 {
+    bool test;
+        qDebug()<< "done";
+        QString id=ui->id_2->text();
+           QString id_event=ui->id_event->text();
+           QString description=ui->desc->text();
+           QString nb_point=ui->nb_point->text();
+
+           avis A(id,id_event,description,nb_point);
+          test=A.ajouter1();
+
+
+          if(test)
+           {
+              int tot=0,i=0,nb;
+
+           QMessageBox::information(nullptr,QObject::tr("ok"),
+                                    QObject::tr("Ajout done"),QMessageBox::Yes);
+
+           QSqlQuery q1,q2,q3;
+           q1.exec("select id_event from evenement");
+           while (q1.next()){
+               tot=0;
+               i=0;
+               nb=0;
+            q2.prepare("Select * from aviss where id_event = :id");
+            q2.bindValue(":id",q1.value(0).toString());
+             q2.exec();
+             while (q2.next()){
+
+                 tot=tot+q2.value(3).toInt();
+                 i++;
+             }
+             nb=tot/i;
+             q3.prepare("update evenement set nb_point=nb_point + :nb where id_event = :idd");
+             q3.bindValue(":nb",nb);
+             q3.bindValue(":idd",q1.value(0).toString());
+             q3.exec();
+
+       }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+               }
+           else
+
+                   QMessageBox::critical(nullptr,QObject::tr("ok"),
+                                         QObject::tr("Ajout impossible"),QMessageBox::Yes);
+
 
 
 

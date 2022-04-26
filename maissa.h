@@ -67,6 +67,8 @@ private slots:
     void on_map_clicked();
     void on_pushButton_11_clicked();
 
+    void on_pushButton_15_clicked();
+
 private:
     Ui::maissa *ui;
     EVENEMENT Event;

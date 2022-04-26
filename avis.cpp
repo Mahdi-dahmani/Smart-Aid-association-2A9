@@ -11,7 +11,7 @@ avis::avis()
 
 }
 
-avis::avis(QString ID_EVENT,QString DESCRIPTION,QString NB_POINT,QString ID_AVIS)
+avis::avis(QString ID_AVIS,QString ID_EVENT,QString DESCRIPTION,QString NB_POINT)
 {
 
     this->ID_AVIS=ID_AVIS;

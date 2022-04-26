@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include "donateurs.h"
 #include "dons.h"
+#include "avis.h"
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -63,6 +64,7 @@ donateurs dtmp;
 Dons dotmp;
     Ui::MainWindow *ui;
     Membre mem;
+    avis A;
 };
 #endif // MAINWINDOW_H
 
