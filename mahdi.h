@@ -20,6 +20,7 @@ class mahdi : public QMainWindow
 public:
     explicit mahdi(QWidget *parent = nullptr);
     ~mahdi();
+
 private slots:
     void on_ajouter_clicked();
 
@@ -100,7 +101,7 @@ void on_lteli_pressed();
 
 void on_lteli_released();
 private:
-    Ui::mahdi *ui;
+Ui::mahdi *ui;
     Sponsor1 spon;
     historique h;
     Arduino A;

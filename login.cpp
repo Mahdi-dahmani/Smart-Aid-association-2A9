@@ -12,7 +12,9 @@
 #include <QDebug>
 #include "mainwindow.h"
 #include "maraaa.h"
+#include "ui_mahdi.h"
 #include "mahdi.h"
+#include "maissa.h"
 using namespace std;
 Login::Login(QWidget *parent) :
     QWidget(parent),
@@ -38,6 +40,7 @@ Login::~Login()
 
 void Login::on_pushButton_clicked()
 {
+
    QString email= ui->email->text();
    QString mdp= ui->mdp->text();
    QSqlQuery q;
@@ -53,8 +56,8 @@ void Login::on_pushButton_clicked()
            if (q.value(7)=="Event")
           { QString mem = q.value(1).toString()+ " "+ q.value(2).toString();
                A.write_to_arduino(mem.toUtf8());
-               QMessageBox::information(nullptr, QObject::tr("OK"),
-                                    QObject::tr("Welcome!Event departement"), QMessageBox::Cancel);
+               maissa *m= new maissa();
+               m->show();
            }
           else if (q.value(7)=="Don")
           { QString mem = q.value(1).toString()+ " "+ q.value(2).toString();
@@ -71,8 +74,9 @@ void Login::on_pushButton_clicked()
           else if (q.value(7)=="Sponsor")
           { QString mem = q.value(1).toString()+ " "+ q.value(2).toString();
                A.write_to_arduino(mem.toUtf8());
-mahdi *m = new mahdi();
+ mahdi *m = new mahdi();
 m->show();
+
               }
            else if (q.value(7)=="Admin")
            { QString mem = q.value(1).toString()+ " "+ q.value(2).toString();

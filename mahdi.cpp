@@ -18,6 +18,7 @@ mahdi::mahdi(QWidget *parent) :
     ui(new Ui::mahdi)
 {
     ui->setupUi(this);
+
     int ret=A.connect_arduino();
     switch(ret){
     case (0):qDebug()<<"connected"<<A.getarduino_port_name();
@@ -97,8 +98,8 @@ historique h(operation,IDENTIFIANT_SPONSOR,NOM_SPONSOR);
 void mahdi::on_Supprimer_clicked()
 {
     QString id=ui->identifiant->text();
-        Sponsor1 s;
-        s.supprimer(id);
+
+        spon.supprimer(id);
         ui->tableView->setModel( spon.afficher());
         QString operation="supprimer";
         historique h(operation,id,"mahdi");
@@ -338,6 +339,8 @@ void mahdi::on_export_2_clicked()
 
 void mahdi::update_label()
 {
+
+
 data=A.read_from_arduino();
 if (data=="FFF"){
     ui->labelee->setText("FORWARD");
@@ -418,3 +421,9 @@ void mahdi::on_lteli_released()
     A.write_to_arduino("K");
 }
 
+
+void mahdi::on_pushButton_clicked()
+{
+ui->option->hide();
+ui->option->setVisible(false);
+}

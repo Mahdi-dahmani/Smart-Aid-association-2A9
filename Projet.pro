@@ -17,9 +17,11 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     arduino.cpp \
+    avis.cpp \
     connection.cpp \
     donateurs.cpp \
     dons.cpp \
+    evenement.cpp \
     excelexporthelper.cpp \
     form.cpp \
     form2.cpp \
@@ -28,15 +30,18 @@ SOURCES += \
     mahdi.cpp \
     main.cpp \
     mainwindow.cpp \
+    maissa.cpp \
     maraaa.cpp \
     membre.cpp \
     sponsor1.cpp
 
 HEADERS += \
     arduino.h \
+    avis.h \
     connection.h \
     donateurs.h \
     dons.h \
+    evenement.h \
     excelexporthelper.h \
     form.h \
     form2.h \
@@ -44,6 +49,7 @@ HEADERS += \
     login.h \
     mahdi.h \
     mainwindow.h \
+    maissa.h \
     maraaa.h \
     membre.h \
     sponsor1.h
@@ -54,6 +60,7 @@ FORMS += \
     login.ui \
     mahdi.ui \
     mainwindow.ui \
+    maissa.ui \
     maraaa.ui
 
 # Default rules for deployment.

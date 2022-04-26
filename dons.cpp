@@ -66,10 +66,10 @@ QSqlQueryModel * Dons::afficherd()
         model->setQuery("select * from DONS");
         model ->setHeaderData(0,Qt::Horizontal,QObject::tr("id_don"));
 
-         model ->setHeaderData(1,Qt::Horizontal,QObject::tr("type_don"));
+         model ->setHeaderData(1,Qt::Horizontal,QObject::tr("id_donateur"));
          model ->setHeaderData(2,Qt::Horizontal,QObject::tr("quantitee"));
-           model ->setHeaderData(3,Qt::Horizontal,QObject::tr("cathegorie"));
- model ->setHeaderData(4,Qt::Horizontal,QObject::tr("id_donateur"));
+           model ->setHeaderData(3,Qt::Horizontal,QObject::tr("type_don"));
+ model ->setHeaderData(4,Qt::Horizontal,QObject::tr("cathegorie"));
            return model;
 
 

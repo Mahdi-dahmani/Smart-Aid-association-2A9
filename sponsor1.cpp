@@ -55,8 +55,7 @@ bool Sponsor1::ajouter()
     QSqlQuery query;
 
 
-         query.prepare("INSERT INTO SPONSOR (IDENTIFIANT_SPONSOR,NOM_SPONSOR,PRENOM_SPONSOR,EMAIL_SPONSOR, NUM_TEL_SPONSOR, ADRESSE_SPONSOR,DATE_DEBUT_SPONSOR,MONTANT_SPONSOR) "
-                       "VALUES (:identifiant_sponsor, :nom_sponsor, :prenom_sponsor,:email_sponsor,:num_tel_sponsor,:adresse_sponsor,:date_debut_sponsor,:montant_sponsor)");
+         query.prepare("INSERT INTO SPONSOR (IDENTIFIANT_SPONSOR,NOM_SPONSOR,PRENOM_SPONSOR,EMAIL_SPONSOR, NUM_TEL_SPONSOR, ADRESSE_SPONSOR,DATE_DEBUT_SPONSOR,MONTANT_SPONSOR) VALUES (:identifiant_sponsor, :nom_sponsor, :prenom_sponsor, :email_sponsor, :num_tel_sponsor, :adresse_sponsor, :date_debut_sponsor, :montant_sponsor)");
          query.bindValue(":identifiant_sponsor",IDENTIFIANT_SPONSOR);
          query.bindValue(":nom_sponsor", NOM_SPONSOR);
          query.bindValue(":prenom_sponsor", PRENOM_SPONSOR);
@@ -66,11 +65,7 @@ bool Sponsor1::ajouter()
          query.bindValue(":date_debut_sponsor", DATE_DEBUT_SPONSOR );
          query.bindValue(":montant_sponsor",MONTANT_SPONSOR);
 
-if((NOM_SPONSOR.isEmpty()&&!(NOM_SPONSOR.contains(QRegExp("^[A-Za-z]+$"))))||(PRENOM_SPONSOR.isEmpty()&&!(PRENOM_SPONSOR.contains(QRegExp("^[A-Za-z]+$"))))||ADRESSE_SPONSOR.isEmpty()||!(IDENTIFIANT_SPONSOR.contains(QRegExp("^[A-Z0-9]+$")))||!(NUM_TEL_SPONSOR.contains(QRegExp("^[0-9]+$")))||(MONTANT_SPONSOR==0))
-{
-    return false ;
-}
-    else return query.exec();
+return query.exec();
 }
 bool Sponsor1::supprimer(QString IDD)
 {
@@ -114,11 +109,8 @@ query.bindValue(":adresse_sponsor", ADRESSE_SPONSOR);
 query.bindValue(":date_sponsor", DATE_DEBUT_SPONSOR );
 query.bindValue(":montant_sponsor",MONTANT_SPONSOR);
 
-if(NOM_SPONSOR.isEmpty())
-{
-    return false ;
-}
-    else return query.exec();
+
+     return query.exec();
 }
 
 

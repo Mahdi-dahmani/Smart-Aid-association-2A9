@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1696</width>
-    <height>781</height>
+    <width>1758</width>
+    <height>772</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -80,9 +80,9 @@
      <widget class="QGroupBox" name="groupBox">
       <property name="geometry">
        <rect>
-        <x>750</x>
-        <y>0</y>
-        <width>971</width>
+        <x>790</x>
+        <y>20</y>
+        <width>851</width>
         <height>641</height>
        </rect>
       </property>
@@ -247,7 +247,7 @@
        <bool>true</bool>
       </property>
       <property name="title">
-       <string>GroupBox</string>
+       <string/>
       </property>
       <property name="flat">
        <bool>true</bool>
@@ -449,9 +449,9 @@ color: rgb(170, 0, 0);</string>
      <widget class="QGroupBox" name="groupBox_3">
       <property name="geometry">
        <rect>
-        <x>-30</x>
-        <y>80</y>
-        <width>781</width>
+        <x>10</x>
+        <y>20</y>
+        <width>741</width>
         <height>1201</height>
        </rect>
       </property>
@@ -616,7 +616,7 @@ color: rgb(170, 0, 0);</string>
        <bool>true</bool>
       </property>
       <property name="title">
-       <string>GroupBox</string>
+       <string/>
       </property>
       <property name="flat">
        <bool>true</bool>
@@ -1056,6 +1056,19 @@ background-color: rgb(35, 167, 255);</string>
        </property>
       </widget>
      </widget>
+     <widget class="QPushButton" name="pushButton">
+      <property name="geometry">
+       <rect>
+        <x>1650</x>
+        <y>10</y>
+        <width>81</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Deconnecté</string>
+      </property>
+     </widget>
     </widget>
     <widget class="QWidget" name="tab">
      <attribute name="title">
@@ -1079,7 +1092,7 @@ background-color: rgb(35, 167, 255);</string>
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1696</width>
+     <width>1758</width>
      <height>26</height>
     </rect>
    </property>

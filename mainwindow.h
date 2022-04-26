@@ -56,6 +56,8 @@ void on_mdm_clicked();
 
 void on_pushButton_8_clicked();
 
+void on_pushButton_9_clicked();
+
 private:
 donateurs dtmp;
 Dons dotmp;

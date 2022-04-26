@@ -13,12 +13,12 @@ Form2::Form2(QWidget *parent) :
     ui->setupUi(this);
 
 QSqlQuery q,q1;
-q1.exec("Select max(nbpoints_membre) from membres");
+q1.exec("Select MAX(nbpoints_membre) from membres");
 q1.first();
 q.prepare("Select * from membres where nbpoints_membre= :val");
 q.bindValue(":val",q1.value(0).toString());
 q.exec();
-q.next();
+q.first();
 qDebug() << q1.value(0).toString();
 qDebug() << q.value(1).toString();
 ui->nom->setText(q.value(1).toString());
