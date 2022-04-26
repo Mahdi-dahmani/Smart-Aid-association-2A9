@@ -1,4 +1,4 @@
-QT       += core gui sql charts axcontainer serialport
+QT       += core gui sql charts axcontainer serialport multimedia multimediawidgets printsupport
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -19,38 +19,48 @@ SOURCES += \
     arduino.cpp \
     avis.cpp \
     connection.cpp \
+    depense.cpp \
     donateurs.cpp \
     dons.cpp \
     evenement.cpp \
     excelexporthelper.cpp \
+    farah.cpp \
     form.cpp \
     form2.cpp \
+    iheb.cpp \
     login.cpp \
     main.cpp \
     mainwindow.cpp \
     maissa.cpp \
     maraaa.cpp \
-    membre.cpp
+    membre.cpp \
+    necessiteux.cpp
 
 HEADERS += \
     arduino.h \
     avis.h \
     connection.h \
+    depense.h \
     donateurs.h \
     dons.h \
     evenement.h \
     excelexporthelper.h \
+    farah.h \
     form.h \
     form2.h \
+    iheb.h \
     login.h \
     mainwindow.h \
     maissa.h \
     maraaa.h \
-    membre.h
+    membre.h \
+    necessiteux.h
 
 FORMS += \
+    farah.ui \
     form.ui \
     form2.ui \
+    iheb.ui \
     login.ui \
     mainwindow.ui \
     maissa.ui \

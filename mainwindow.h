@@ -5,6 +5,7 @@
 #include "donateurs.h"
 #include "dons.h"
 #include "avis.h"
+#include "arduino.h"
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -59,12 +60,18 @@ void on_pushButton_8_clicked();
 
 void on_pushButton_9_clicked();
 
+void on_art_clicked();
+void update_label();
+void on_pushButton_11_clicked();
+
 private:
 donateurs dtmp;
 Dons dotmp;
     Ui::MainWindow *ui;
     Membre mem;
     avis A;
+    Arduino ar;
+    QByteArray data;
 };
 #endif // MAINWINDOW_H
 

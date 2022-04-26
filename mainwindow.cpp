@@ -44,6 +44,15 @@ MainWindow::MainWindow(QWidget *parent)
 
 
     ui->setupUi(this);
+    int ret=ar.connect_arduino(); // lancer la connexion à arduino
+         switch(ret){
+         case(0):qDebug()<< "arduino is available and connected to : "<< ar.getarduino_port_name();
+             break;
+         case(1):qDebug() << "arduino is available but not connected to :" <<ar.getarduino_port_name();
+            break;
+         case(-1):qDebug() << "arduino is not available";
+         }
+          QObject::connect(ar.getserial(),SIGNAL(readyRead()),this,SLOT(update_label()));
     ui->tableView->setModel(mem.afficher());
     QSqlQueryModel  *model = new QSqlQueryModel();
     model->setQuery("select id_event, nom_event from evenement");
@@ -572,4 +581,36 @@ void MainWindow::on_pushButton_8_clicked()
 void MainWindow::on_pushButton_9_clicked()
 {
      delete ui;
+}
+
+void MainWindow::on_art_clicked()
+{
+    ar.write_to_arduino("2");
+    QSqlQuery q;
+    q.prepare("INSERT INTO ALARM (ID,DATEE) VALUES (ALARM_SEQ.nextval,sysdate)");
+    q.exec();
+
+ui->etat->setText("Arreter");
+}
+void MainWindow::update_label()
+{
+    data=ar.read_from_arduino();
+
+    if(data=="1")
+        ui->etat->setText("Mouvement"); // si les données reçues de arduino via la liaison série sont égales à 1
+    // alors afficher ON
+
+    else if (data=="0")
+
+        ui->etat->setText("Pas de mouvement");   // si les données reçues de arduino via la liaison série sont égales à 0
+     //alors afficher ON
+}
+
+void MainWindow::on_pushButton_11_clicked()
+{
+    QSqlQuery q;
+    q.prepare("DELETE * FROM MM");
+    q.exec();
+    q.prepare("update membres set nbpoints_membre = 0");
+    q.exec();
 }

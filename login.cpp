@@ -13,8 +13,9 @@
 #include "mainwindow.h"
 #include "maraaa.h"
 #include "ui_mahdi.h"
-
+#include "farah.h"
 #include "maissa.h"
+#include "iheb.h"
 using namespace std;
 Login::Login(QWidget *parent) :
     QWidget(parent),
@@ -59,6 +60,12 @@ void Login::on_pushButton_clicked()
                maissa *m= new maissa();
                m->show();
            }
+           else if (q.value(7)=="Necissiteux")
+          { QString mem = q.value(1).toString()+ " "+ q.value(2).toString();
+               A.write_to_arduino(mem.toUtf8());
+farah *f = new farah();
+f->show();
+           }
           else if (q.value(7)=="Don")
           { QString mem = q.value(1).toString()+ " "+ q.value(2).toString();
                A.write_to_arduino(mem.toUtf8());
@@ -68,8 +75,8 @@ void Login::on_pushButton_clicked()
           else if (q.value(7)=="Depense")
           { QString mem = q.value(1).toString()+ " "+ q.value(2).toString();
                A.write_to_arduino(mem.toUtf8());
-               QMessageBox::information(nullptr, QObject::tr("OK"),
-                                    QObject::tr("Welcome! Depense departement"), QMessageBox::Cancel);
+               iheb *i =new iheb();
+               i->show();
               }
           else if (q.value(7)=="Sponsor")
           { QString mem = q.value(1).toString()+ " "+ q.value(2).toString();

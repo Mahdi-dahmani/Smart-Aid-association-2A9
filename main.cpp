@@ -19,7 +19,7 @@
 #include "ui_form.h"
 #include <QtWidgets/QApplication>
 #include <QFile>
-#include "mahdi.h"
+#include <QMediaPlayer>
 QT_CHARTS_USE_NAMESPACE
 int main(int argc, char *argv[])
 { //hola
@@ -34,7 +34,9 @@ int main(int argc, char *argv[])
     a.setStyleSheet(styleSheet);
     Connection c;
    c.createconnect();
-
+   QMediaPlayer * music =new QMediaPlayer;
+   music->setMedia(QUrl::fromLocalFile(""));
+  music->play();
 Login l;
 l.show();
     return a.exec();
