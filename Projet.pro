@@ -27,14 +27,17 @@ SOURCES += \
     farah.cpp \
     form.cpp \
     form2.cpp \
+    historique.cpp \
     iheb.cpp \
     login.cpp \
+    mahdi.cpp \
     main.cpp \
     mainwindow.cpp \
     maissa.cpp \
     maraaa.cpp \
     membre.cpp \
-    necessiteux.cpp
+    necessiteux.cpp \
+    sponsor1.cpp
 
 HEADERS += \
     arduino.h \
@@ -48,13 +51,16 @@ HEADERS += \
     farah.h \
     form.h \
     form2.h \
+    historique.h \
     iheb.h \
     login.h \
+    mahdi.h \
     mainwindow.h \
     maissa.h \
     maraaa.h \
     membre.h \
-    necessiteux.h
+    necessiteux.h \
+    sponsor1.h
 
 FORMS += \
     farah.ui \
@@ -62,6 +68,7 @@ FORMS += \
     form2.ui \
     iheb.ui \
     login.ui \
+    mahdi.ui \
     mainwindow.ui \
     maissa.ui \
     maraaa.ui
