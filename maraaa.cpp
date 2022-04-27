@@ -390,20 +390,53 @@ ui->tableView_2->setModel(dotmp.afficherd());
 }
 
 
+
 void Maraaa::update_label()
-{
-    data=A.read_from_arduino();
+    {
+        data=A.read_from_arduino();
 
-    if(data=="1")
+        if(data=="1")
+            ui->etat->setText("Mouvement"); // si les données reçues de arduino via la liaison série sont égales à 1
+        // alors afficher ON
 
-        ui->etat->setText("Mouvement"); // si les données reçues de arduino via la liaison série sont égales à 1
-    // alors afficher ON
+        else if (data=="0")
 
-    else if (data=="0")
+            ui->etat->setText("Pas de mouvement");   // si les données reçues de arduino via la liaison série sont égales à 0
+         //alors afficher ON
+       else if (data=="FFF"){
+            ui->labelee->setText("FORWARD");
+            QSqlQuery q;
+            q.prepare("INSERT INTO CAR (ID_ACTION,DATE_ACTION,ACTION) VALUES (CAR_SEQ1.nextval,sysdate,'FORWARD')");
+            q.exec();
+        }
+        else if (data=="RRR"){
+            ui->labelee->setText("RIGHT");
+            QSqlQuery q;
+            q.prepare("INSERT INTO CAR (ID_ACTION,DATE_ACTION,ACTION) VALUES (CAR_SEQ1.nextval,sysdate,'RIGHT')");
+            q.exec();
+        }
+        else if (data=="LLL"){
+            ui->labelee->setText("LEFT");
+            QSqlQuery q;
+            q.prepare("INSERT INTO CAR (ID_ACTION,DATE_ACTION,ACTION) VALUES (CAR_SEQ1.nextval,sysdate,'LEFT')");
+            q.exec();
+        }
+        else if (data=="BBB"){
+            ui->labelee->setText("BACK");
+            QSqlQuery q;
+            q.prepare("INSERT INTO CAR (ID_ACTION,DATE_ACTION,ACTION) VALUES (CAR_SEQ1.nextval,sysdate,'BACK')");
+            q.exec();
+        }
 
-        ui->etat->setText("Pas de mouvement");   // si les données reçues de arduino via la liaison série sont égales à 0
-     //alors afficher ON
-}
+        QSqlQueryModel * model=new QSqlQueryModel();
+        model->setQuery("select * from CAR");
+        model->setHeaderData(0,Qt::Horizontal,QObject::tr("IDENTIFIANT_CAR"));
+        model->setHeaderData(1,Qt::Horizontal,QObject::tr("DATE"));
+        model->setHeaderData(2,Qt::Horizontal,QObject::tr("ACTION"));
+        ui->tablehistorique->setModel(model);
+    }
+
+
 
 /*void MainWindow::on_pushButton_clicked()   // implémentation du slot bouton on
 {
@@ -430,6 +463,9 @@ void Maraaa::on_art_clicked()
 {
     A.write_to_arduino("0");
     ui->etat->setText("Arréter");
+    QSqlQuery q;
+    q.prepare("INSERT INTO ALARM (ID,DATEE) VALUES (ALARM_SEQ.nextval,sysdate)");
+    q.exec();
 }
 
 void Maraaa::on_pushButton_released()
@@ -507,4 +543,45 @@ void Maraaa::on_pushButton_8_clicked()
 
 
 
+}
+
+void Maraaa::on_forward_clicked()
+{
+    A.write_to_arduino("F");
+}
+
+void Maraaa::on_forward_released()
+{
+     A.write_to_arduino("K");
+}
+
+void Maraaa::on_left_clicked()
+{
+     A.write_to_arduino("L");
+}
+
+void Maraaa::on_left_released()
+{
+    A.write_to_arduino("K");
+}
+
+void Maraaa::on_back_clicked()
+{
+    A.write_to_arduino("B");
+}
+
+void Maraaa::on_back_released()
+{
+    A.write_to_arduino("K");
+}
+
+void Maraaa::on_right_clicked()
+{
+    A.write_to_arduino("R");
+}
+
+
+void Maraaa::on_right_released()
+{
+    A.write_to_arduino("K");
 }

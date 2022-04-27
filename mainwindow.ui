@@ -42,7 +42,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>2</number>
     </property>
     <widget class="QWidget" name="tab">
      <attribute name="title">
@@ -855,7 +855,7 @@
        <string>Alarm</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton_10">
+     <widget class="QPushButton" name="forward">
       <property name="geometry">
        <rect>
         <x>720</x>
@@ -881,7 +881,7 @@
        <string>TextLabel</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton_12">
+     <widget class="QPushButton" name="left">
       <property name="geometry">
        <rect>
         <x>620</x>
@@ -894,7 +894,7 @@
        <string>Left</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton_14">
+     <widget class="QPushButton" name="back">
       <property name="geometry">
        <rect>
         <x>720</x>
@@ -907,7 +907,7 @@
        <string>Back</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton_13">
+     <widget class="QPushButton" name="right">
       <property name="geometry">
        <rect>
         <x>810</x>

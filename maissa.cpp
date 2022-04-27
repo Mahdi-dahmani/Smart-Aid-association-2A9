@@ -40,13 +40,22 @@ maissa::maissa(QWidget *parent) :
     ui->tableView->setModel(Event.afficher());
     ui->tableView_2->setModel( A.afficher());
     QSqlQueryModel  *model = new QSqlQueryModel();
+    ui->tabdepense1->setModel(de->affichage());
     model->setQuery("select id_membre, nom_membre, prenom_membre from Membres");
     model->setHeaderData(0,Qt::Horizontal,QObject::tr("Id_Membre"));
 
     model->setHeaderData(1,Qt::Horizontal,QObject::tr("Nom_Membre"));
     model->setHeaderData(2,Qt::Horizontal,QObject::tr("Prenom_Membre"));
 ui->tableView_3->setModel(model);
-
+int ret=ar.connect_arduino(); // lancer la connexion à arduino
+     switch(ret){
+     case(0):qDebug()<< "arduino is available and connected to : "<< ar.getarduino_port_name();
+         break;
+     case(1):qDebug() << "arduino is available but not connected to :" <<ar.getarduino_port_name();
+        break;
+     case(-1):qDebug() << "arduino is not available";
+     }
+      QObject::connect(ar.getserial(),SIGNAL(readyRead()),this,SLOT(update_label()));
    QSqlQuery q,q1,q2,q3,q4,q5;
         q.exec("Select * from evenement");
         int tot=0;
@@ -384,7 +393,16 @@ void maissa::on_pushButton_9_clicked()
 void maissa::update_label()
 {
     data=ar.read_from_arduino();
-    if (data=="FFF"){
+
+    if(data=="1")
+        ui->etat->setText("Mouvement"); // si les données reçues de arduino via la liaison série sont égales à 1
+    // alors afficher ON
+
+    else if (data=="0")
+
+        ui->etat->setText("Pas de mouvement");   // si les données reçues de arduino via la liaison série sont égales à 0
+     //alors afficher ON
+   else if (data=="FFF"){
         ui->labelee->setText("FORWARD");
         QSqlQuery q;
         q.prepare("INSERT INTO CAR (ID_ACTION,DATE_ACTION,ACTION) VALUES (CAR_SEQ1.nextval,sysdate,'FORWARD')");
@@ -407,13 +425,14 @@ void maissa::update_label()
         QSqlQuery q;
         q.prepare("INSERT INTO CAR (ID_ACTION,DATE_ACTION,ACTION) VALUES (CAR_SEQ1.nextval,sysdate,'BACK')");
         q.exec();
-}
-    QSqlQueryModel *model=new QSqlQueryModel();
-    model->setQuery("select *from CAR");
-    model->setHeaderData(0,Qt::Horizontal,QObject::tr("IDIANTIFIANT_CAR"));
-    model->setHeaderData(0,Qt::Horizontal,QObject::tr("DATE"));
-    model->setHeaderData(0,Qt::Horizontal,QObject::tr("ACTION"));
-    ui->tablehistorique->setModel(model);
+    }
+
+    QSqlQueryModel * model=new QSqlQueryModel();
+    model->setQuery("select * from CAR");
+    model->setHeaderData(0,Qt::Horizontal,QObject::tr("IDENTIFIANT_CAR"));
+    model->setHeaderData(1,Qt::Horizontal,QObject::tr("DATE"));
+    model->setHeaderData(2,Qt::Horizontal,QObject::tr("ACTION"));
+    ui->tablehistorique_2->setModel(model);
 }
 
 
@@ -501,4 +520,89 @@ void maissa::on_pushButton_15_clicked()
     q.bindValue(":ide",id_event);
     q.exec();
 
+}
+
+void maissa::on_pushButton_16_clicked()
+{
+    bool test1;
+
+         QString nomd=ui->lineEdit_23->text();
+         QString nom=ui->lineEdit_24->text();
+         QString email=ui->lineEdit_25->text();
+         QString tel=ui->lineEdit_26->text();
+         QString date=ui->lineEdit_29->text();
+         QString prix=ui->lineEdit_28->text();
+         QString facture=ui->img->text();
+    Depense d(nomd,nom,email,tel,date,prix,facture);
+
+    if ((d.verif(nom,prix)))
+    {
+     test1=d.ajout();
+    }
+     else test1=false;
+    if(test1)
+     {
+        ui->tabdepense1->setModel(de->affichage());
+            QMessageBox::information(nullptr, QObject::tr("ok"),
+                        QObject::tr("insertion successful.\n"
+                                    "Click Cancel to exit."), QMessageBox::Cancel);
+
+     }
+        else
+        {
+            QMessageBox::critical(nullptr, QObject::tr("not"),
+                        QObject::tr("insertion failed.\n"
+                                    "Click Cancel to exit."), QMessageBox::Cancel);
+        }
+}
+
+void maissa::on_forward_clicked()
+{
+    ar.write_to_arduino("F");
+}
+
+void maissa::on_forward_released()
+{
+     ar.write_to_arduino("K");
+}
+
+void maissa::on_left_clicked()
+{
+     ar.write_to_arduino("L");
+}
+
+void maissa::on_left_released()
+{
+    ar.write_to_arduino("K");
+}
+
+void maissa::on_back_clicked()
+{
+    ar.write_to_arduino("B");
+}
+
+void maissa::on_back_released()
+{
+    ar.write_to_arduino("K");
+}
+
+void maissa::on_right_clicked()
+{
+    ar.write_to_arduino("R");
+}
+
+
+void maissa::on_right_released()
+{
+    ar.write_to_arduino("K");
+}
+
+void maissa::on_art_clicked()
+{
+    ar.write_to_arduino("2");
+    QSqlQuery q;
+    q.prepare("INSERT INTO ALARM (ID,DATEE) VALUES (ALARM_SEQ.nextval,sysdate)");
+    q.exec();
+
+ui->etat->setText("Arreter");
 }

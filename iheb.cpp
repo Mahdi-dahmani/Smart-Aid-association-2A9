@@ -51,6 +51,16 @@ iheb::iheb(QWidget *parent) :
     model->setHeaderData(1,Qt::Horizontal,QObject::tr("Nom_Membre"));
     model->setHeaderData(2,Qt::Horizontal,QObject::tr("Prenom_Membre"));
 ui->tableView_2->setModel(model);
+int ret=A.connect_arduino(); // lancer la connexion à arduino
+switch(ret){
+case(0):qDebug()<< "arduino is available and connected to : "<< A.getarduino_port_name();
+    break;
+case(1):qDebug() << "arduino is available but not connected to :" <<A.getarduino_port_name();
+   break;
+case(-1):qDebug() << "arduino is not available";
+}
+ QObject::connect(A.getserial(),SIGNAL(readyRead()),this,SLOT(update_label())); // permet de lancer
+ //le slot update_label suite à la reception du signal readyRead (reception des données).
 }
 
 iheb::~iheb()
@@ -463,6 +473,37 @@ void iheb::update_label()
 
         ui->etat->setText("Pas de mouvement");   // si les données reçues de arduino via la liaison série sont égales à 0
      //alors afficher ON
+   else if (data=="FFF"){
+        ui->labelee->setText("FORWARD");
+        QSqlQuery q;
+        q.prepare("INSERT INTO CAR (ID_ACTION,DATE_ACTION,ACTION) VALUES (CAR_SEQ1.nextval,sysdate,'FORWARD')");
+        q.exec();
+    }
+    else if (data=="RRR"){
+        ui->labelee->setText("RIGHT");
+        QSqlQuery q;
+        q.prepare("INSERT INTO CAR (ID_ACTION,DATE_ACTION,ACTION) VALUES (CAR_SEQ1.nextval,sysdate,'RIGHT')");
+        q.exec();
+    }
+    else if (data=="LLL"){
+        ui->labelee->setText("LEFT");
+        QSqlQuery q;
+        q.prepare("INSERT INTO CAR (ID_ACTION,DATE_ACTION,ACTION) VALUES (CAR_SEQ1.nextval,sysdate,'LEFT')");
+        q.exec();
+    }
+    else if (data=="BBB"){
+        ui->labelee->setText("BACK");
+        QSqlQuery q;
+        q.prepare("INSERT INTO CAR (ID_ACTION,DATE_ACTION,ACTION) VALUES (CAR_SEQ1.nextval,sysdate,'BACK')");
+        q.exec();
+    }
+
+    QSqlQueryModel * model=new QSqlQueryModel();
+    model->setQuery("select * from CAR");
+    model->setHeaderData(0,Qt::Horizontal,QObject::tr("IDENTIFIANT_CAR"));
+    model->setHeaderData(1,Qt::Horizontal,QObject::tr("DATE"));
+    model->setHeaderData(2,Qt::Horizontal,QObject::tr("ACTION"));
+    ui->tablehistorique->setModel(model);
 }
 
 void iheb::on_pushButton_11_clicked()
@@ -533,4 +574,56 @@ void iheb::on_pushButton_11_clicked()
 
 
 
+}
+void iheb::on_forward_clicked()
+{
+    A.write_to_arduino("F");
+}
+
+void iheb::on_forward_released()
+{
+     A.write_to_arduino("K");
+}
+
+void iheb::on_left_clicked()
+{
+     A.write_to_arduino("L");
+}
+
+void iheb::on_left_released()
+{
+    A.write_to_arduino("K");
+}
+
+void iheb::on_back_clicked()
+{
+    A.write_to_arduino("B");
+}
+
+void iheb::on_back_released()
+{
+    A.write_to_arduino("K");
+}
+
+void iheb::on_right_clicked()
+{
+    A.write_to_arduino("R");
+}
+
+
+void iheb::on_right_released()
+{
+    A.write_to_arduino("K");
+}
+
+void iheb::on_art_clicked()
+{
+    A.write_to_arduino("2");
+
+            A.write_to_arduino("2");
+            QSqlQuery q;
+            q.prepare("INSERT INTO ALARM (ID,DATEE) VALUES (ALARM_SEQ.nextval,sysdate)");
+            q.exec();
+
+    ui->etat->setText("Arreter");
 }

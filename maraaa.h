@@ -53,6 +53,21 @@ private slots:
     void on_art_clicked();
     void on_pushButton_released();
     void on_pushButton_8_clicked();
+    void on_forward_clicked();
+
+    void on_forward_released();
+
+    void on_left_clicked();
+
+    void on_left_released();
+
+    void on_back_clicked();
+
+    void on_back_released();
+
+    void on_right_clicked();
+
+    void on_right_released();
 
 private:
     Ui::Maraaa *ui;

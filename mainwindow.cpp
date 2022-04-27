@@ -604,6 +604,37 @@ void MainWindow::update_label()
 
         ui->etat->setText("Pas de mouvement");   // si les données reçues de arduino via la liaison série sont égales à 0
      //alors afficher ON
+   else if (data=="FFF"){
+        ui->labelee->setText("FORWARD");
+        QSqlQuery q;
+        q.prepare("INSERT INTO CAR (ID_ACTION,DATE_ACTION,ACTION) VALUES (CAR_SEQ1.nextval,sysdate,'FORWARD')");
+        q.exec();
+    }
+    else if (data=="RRR"){
+        ui->labelee->setText("RIGHT");
+        QSqlQuery q;
+        q.prepare("INSERT INTO CAR (ID_ACTION,DATE_ACTION,ACTION) VALUES (CAR_SEQ1.nextval,sysdate,'RIGHT')");
+        q.exec();
+    }
+    else if (data=="LLL"){
+        ui->labelee->setText("LEFT");
+        QSqlQuery q;
+        q.prepare("INSERT INTO CAR (ID_ACTION,DATE_ACTION,ACTION) VALUES (CAR_SEQ1.nextval,sysdate,'LEFT')");
+        q.exec();
+    }
+    else if (data=="BBB"){
+        ui->labelee->setText("BACK");
+        QSqlQuery q;
+        q.prepare("INSERT INTO CAR (ID_ACTION,DATE_ACTION,ACTION) VALUES (CAR_SEQ1.nextval,sysdate,'BACK')");
+        q.exec();
+    }
+
+    QSqlQueryModel * model=new QSqlQueryModel();
+    model->setQuery("select * from CAR");
+    model->setHeaderData(0,Qt::Horizontal,QObject::tr("IDENTIFIANT_CAR"));
+    model->setHeaderData(1,Qt::Horizontal,QObject::tr("DATE"));
+    model->setHeaderData(2,Qt::Horizontal,QObject::tr("ACTION"));
+    ui->tablehistorique->setModel(model);
 }
 
 void MainWindow::on_pushButton_11_clicked()
@@ -613,4 +644,45 @@ void MainWindow::on_pushButton_11_clicked()
     q.exec();
     q.prepare("update membres set nbpoints_membre = 0");
     q.exec();
+}
+
+void MainWindow::on_forward_clicked()
+{
+    ar.write_to_arduino("F");
+}
+
+void MainWindow::on_forward_released()
+{
+     ar.write_to_arduino("K");
+}
+
+void MainWindow::on_left_clicked()
+{
+     ar.write_to_arduino("L");
+}
+
+void MainWindow::on_left_released()
+{
+    ar.write_to_arduino("K");
+}
+
+void MainWindow::on_back_clicked()
+{
+    ar.write_to_arduino("B");
+}
+
+void MainWindow::on_back_released()
+{
+    ar.write_to_arduino("K");
+}
+
+void MainWindow::on_right_clicked()
+{
+    ar.write_to_arduino("R");
+}
+
+
+void MainWindow::on_right_released()
+{
+    ar.write_to_arduino("K");
 }

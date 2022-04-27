@@ -5,6 +5,7 @@
 #include <evenement.h>
 #include <avis.h>
 #include <arduino.h>
+#include "depense.h"
 namespace Ui {
 class maissa;
 }
@@ -69,9 +70,29 @@ private slots:
 
     void on_pushButton_15_clicked();
 
+    void on_pushButton_16_clicked();
+    void on_forward_clicked();
+
+    void on_forward_released();
+
+    void on_left_clicked();
+
+    void on_left_released();
+
+    void on_back_clicked();
+
+    void on_back_released();
+
+    void on_right_clicked();
+
+    void on_right_released();
+
+    void on_art_clicked();
+
 private:
     Ui::maissa *ui;
     EVENEMENT Event;
+     Depense *de;
     avis A;
     Arduino ar;
     QByteArray data;
