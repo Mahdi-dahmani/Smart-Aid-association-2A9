@@ -15,7 +15,6 @@ public:
     explicit Form(QWidget *parent = nullptr);
     ~Form();
 
-
 private:
     Ui::Form *ui;
 };
